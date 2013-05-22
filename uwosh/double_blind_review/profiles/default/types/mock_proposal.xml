@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<object name="mock_proposal" meta_type="Dexterity FTI" i18n:domain="plone"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title" i18n:translate="">mock proposal</property>
+ <property name="description"
+    i18n:translate="">This is a basic proposal type upon which to base proposals or submissions types.</property>
+ <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
+ <property name="factory">mock_proposal</property>
+ <property
+    name="add_view_expr">string:${folder_url}/++add++mock_proposal</property>
+ <property name="link_target"></property>
+ <property name="immediate_view">view</property>
+ <property name="global_allow">True</property>
+ <property name="filter_content_types">True</property>
+ <property name="allowed_content_types">
+  <element value="mentor"/>
+  <element value="mock_review"/>
+  <element value="proposer"/>
+ </property>
+ <property name="allow_discussion">False</property>
+ <property name="default_view">view</property>
+ <property name="view_methods">
+  <element value="view"/>
+ </property>
+ <property name="default_view_fallback">False</property>
+ <property name="add_permission">cmf.AddPortalContent</property>
+ <property name="klass">plone.dexterity.content.Container</property>
+ <property name="behaviors">
+  <element value="plone.app.content.interfaces.INameFromTitle"/>
+ </property>
+ <property name="schema"></property>
+ <property
+    name="model_source">&lt;model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+    &lt;schema&gt;
+      &lt;field name="title" type="zope.schema.TextLine"&gt;
+        &lt;default&gt;Please use an informative title here.&lt;/default&gt;
+        &lt;description&gt;Title for the Proposal&lt;/description&gt;
+        &lt;title&gt;Title&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="abstract" type="plone.app.textfield.RichText"&gt;
+        &lt;default&gt;&amp;lt;p&amp;gt;Limit to maximum of 250 words.&amp;lt;/p&amp;gt;&lt;/default&gt;
+        &lt;description&gt;Type or copy and paste your abstract into the box below.  This is a RichText Field so can contain special characters images and formatting.&lt;/description&gt;
+        &lt;title&gt;Abstract&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="instructions" type="plone.app.textfield.RichText"&gt;
+        &lt;default&gt;&amp;lt;ol&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;After filling in your title and abstract above. &amp;#160;Save this proposal container using the "Save" button below. &amp;#160;If you made a mistake you can always go back and correct it in the "Edit" tab above. &amp;#160;Then follow the rest of these instructions.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;For each student proposer (maximum of 2) add proposer information by selecting "Proposer" from the "Add New..." menu in the green bar above.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;For each faculty or staff mentor add the mentor information by selecting "Mentor" from the "Add New..." menu in the green bar above.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Click on the "Edit" tab above and upload the proposal document in .pdf format by clicking on the "Upload" button.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Check that everything is correct.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Click on the "Sharing" tab in the green bar and share the proposal with your primary mentor by giving them "edit" permission.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Change state to "Send to Advisor for approval and submission" using the State menu in the green bar. &amp;#160;You and the mentor will still be able to replace the document and edit the parts of the proposal until the mentor submits.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Once everything is really, really ready (see final checklist), the mentor should select "Submit" from the state menu in the green bar (note only mentors can submit).&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;/ol&amp;gt;&lt;/default&gt;
+        &lt;description&gt;DO NOT EDIT!&lt;/description&gt;
+        &lt;title&gt;Instructions&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="proposal_document" type="plone.namedfile.field.NamedFile"&gt;
+        &lt;description&gt;Upload a .pdf file containing the complete proposal document (title page with abstract, proposal body and mentor letter).&lt;/description&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Proposal Document&lt;/title&gt;
+      &lt;/field&gt;
+    &lt;/schema&gt;
+  &lt;/model&gt;</property>
+ <property name="model_file"></property>
+ <property name="schema_policy">dexterity</property>
+ <alias from="(Default)" to="(dynamic view)"/>
+ <alias from="edit" to="@@edit"/>
+ <alias from="sharing" to="@@sharing"/>
+ <alias from="view" to="(selected layout)"/>
+ <action title="View" action_id="view" category="object" condition_expr=""
+    description="" icon_expr="" link_target="" url_expr="string:${object_url}"
+    visible="True">
+  <permission value="View"/>
+ </action>
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
+    description="" icon_expr="" link_target=""
+    url_expr="string:${object_url}/edit" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+</object>

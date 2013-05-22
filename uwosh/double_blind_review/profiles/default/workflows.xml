@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+ <property
+    name="title">Contains workflow definitions for your portal</property>
+ <object name="anonymous_peer_review_workflow" meta_type="Workflow"/>
+ <object name="id_info_workflow" meta_type="Workflow"/>
+ <object name="intructor_only_workflow" meta_type="Workflow"/>
+ <object name="proposal_folder_workflow" meta_type="Workflow"/>
+ <object name="proposal_workflow" meta_type="Workflow"/>
+ <bindings>
+  <default>
+   <bound-workflow workflow_id="intranet_workflow"/>
+  </default>
+  <type type_id="ATBooleanCriterion"/>
+  <type type_id="ATCurrentAuthorCriterion"/>
+  <type type_id="ATDateCriteria"/>
+  <type type_id="ATDateRangeCriterion"/>
+  <type type_id="ATListCriterion"/>
+  <type type_id="ATPathCriterion"/>
+  <type type_id="ATPortalTypeCriterion"/>
+  <type type_id="ATReferenceCriterion"/>
+  <type type_id="ATRelativePathCriterion"/>
+  <type type_id="ATSelectionCriterion"/>
+  <type type_id="ATSimpleIntCriterion"/>
+  <type type_id="ATSimpleStringCriterion"/>
+  <type type_id="ATSortCriterion"/>
+  <type type_id="File">
+   <bound-workflow workflow_id="proposal_workflow"/>
+  </type>
+  <type type_id="Image"/>
+  <type type_id="Plone Site"/>
+  <type type_id="Proposals_Folder">
+   <bound-workflow workflow_id="proposal_folder_workflow"/>
+  </type>
+  <type type_id="double_blind_review_product_overview">
+   <bound-workflow workflow_id="intructor_only_workflow"/>
+  </type>
+  <type type_id="folder_visible_only_to_administrators">
+   <bound-workflow workflow_id="intructor_only_workflow"/>
+  </type>
+  <type type_id="mentor">
+   <bound-workflow workflow_id="id_info_workflow"/>
+  </type>
+  <type type_id="mock_proposal">
+   <bound-workflow workflow_id="proposal_workflow"/>
+  </type>
+  <type type_id="mock_review">
+   <bound-workflow workflow_id="anonymous_peer_review_workflow"/>
+  </type>
+  <type type_id="proposal_drop_box">
+   <bound-workflow workflow_id="proposal_folder_workflow"/>
+  </type>
+  <type type_id="proposer">
+   <bound-workflow workflow_id="id_info_workflow"/>
+  </type>
+ </bindings>
+</object>

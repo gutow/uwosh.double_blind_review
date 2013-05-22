@@ -1,0 +1,12 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="plonefrontpage" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Double Blind Review Overview</title>
+  </head>
+  <body i18n:translate="front-text">
+    This is a test<br>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<object name="custom" meta_type="Folder">
+ <property name="title"></property>
+ <object name="folder_listing" meta_type="Page Template"/>
+</object>

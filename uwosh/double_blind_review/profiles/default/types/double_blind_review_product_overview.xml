@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<object name="double_blind_review_product_overview" meta_type="Dexterity FTI"
+   i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title"
+    i18n:translate="">Double Blind Review Product Overview</property>
+ <property name="description"
+    i18n:translate="">Duplicate of a dexterity type that mimics the standard plone page type used for permanent instructions.</property>
+ <property name="icon_expr">string:${portal_url}/document_icon.png</property>
+ <property name="factory">double_blind_review_product_overview</property>
+ <property
+    name="add_view_expr">string:${folder_url}/++add++double_blind_review_product_overview</property>
+ <property name="link_target"></property>
+ <property name="immediate_view">view</property>
+ <property name="global_allow">True</property>
+ <property name="filter_content_types">True</property>
+ <property name="allowed_content_types"/>
+ <property name="allow_discussion">False</property>
+ <property name="default_view">view</property>
+ <property name="view_methods">
+  <element value="view"/>
+ </property>
+ <property name="default_view_fallback">False</property>
+ <property name="add_permission">cmf.AddPortalContent</property>
+ <property name="klass">plone.dexterity.content.Container</property>
+ <property name="behaviors">
+  <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
+  <element value="plone.app.content.interfaces.INameFromTitle"/>
+ </property>
+ <property name="schema"></property>
+ <property
+    name="model_source">&lt;model xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+    &lt;schema&gt;
+      &lt;field name="content" type="plone.app.textfield.RichText"&gt;
+        &lt;default&gt;&amp;lt;h2&amp;gt;Target Uses&amp;lt;/h2&amp;gt;&amp;#13;
+  &amp;lt;p&amp;gt;This product was designed to allow double blind review (neither author nor reviewer knows who the other is) of content posted to the web site. In particular it was designed for review of grant proposals and written student work. The idea was to provide this facility in as "plonish" a way as possible, so that it could be used with almost any content type one could devise. In particular, I wanted to create something that non-programmers could use for any kind of submission they could build through the web using Dexterity. The main impetus for this was that I foresee passing responsibility for my institution's internal grant processing onto someone else in the near future.- &amp;lt;em&amp;gt;May 16, 2013 - Jonathan Gutow, University of Wisconsin Oshkosh, Oshkosh, WI, USA&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;&amp;#13;
+  &amp;lt;h2&amp;gt;Administration Overview&amp;lt;/h2&amp;gt;&amp;#13;
+  &amp;lt;p&amp;gt;For each type of proposal or proposal cycle the administrator creates a Proposal Drop Box with instructions in it for what to submit and when.&amp;#160; At the end of the submission period the administrator stops accepting submissions by changing the workflow state.&amp;#160; The administrator then assigns reviewers to the proposals and changes the state of the Proposal Drop Box and its contents to "under review".&amp;#160; Content rules could be used to automatically notify the assigned reviewers by e-mail that the proposals are ready for review, but this is not set up by default.&amp;#160; Once the reviewers are done the proposals are passed on to the panel&amp;#160;(another state change) for a final decision, which is recorded by changing the state of the proposal, as well.&amp;#160; When everything is complete the drop box state is changed to cycle complete and the decisions and reviews are made visible to the proposers.&amp;lt;/p&amp;gt;&amp;#13;
+  &amp;lt;h2&amp;gt;Submitting a Proposal Overview&amp;lt;/h2&amp;gt;&amp;#13;
+  &amp;lt;p&amp;gt;The proposer navigates to the web site.&amp;#160; In general they should be directed to the public landing page.&amp;#160; Once they log in links will appear in the main navigation bar at the top of the page for any proposal drop boxes that are currently accepting submissions or under review.&amp;#160; Thus the landing page should describe what kind of an account is necessary to access the site. Proposals for which the submission-review cycle is complete do not show up in the main bar (the administrator is encouraged to make them available through an "Archive" collection at the root level of the site).&amp;#160; By clicking on the link in the top navigation bar the proposer navigates to the proposal drop box.&amp;#160; Using the "Add New ..." menu they add a new proposal and provide some basic information.&amp;#160; Once the proposal is created they add proposer ID and contact information to the proposal as sub items.&amp;#160; In the examples provided there are two types of proposers (proposers and mentors), allowing for student proposers and faculty mentors to provide different information.&amp;#160; The proposer and mentor items follow their own workflows and are only visible to the site manager and the proposer or mentor.&amp;#160; This way the proposal can be anonymous as long as the proposer avoids putting identifying information in the proposal. A one or two tiered submission process is available.&amp;#160; If the proposer is a member of a group that is assigned the role of "submitter" they can directly submit the proposal by selecting the "submit" option in the state menu.&amp;#160; If the proposer is not a member of the "submitter" group (students proposers are not allowed to submit directly in our system), they cannot submit directly.&amp;#160; They must "share" their proposal with their mentor using the sharing tab and they also select the "Send proposal to Advisor for approval and submission..." in the state menu.&amp;#160; The mentor can then submit it if they approve.&amp;#160; The manager then assigns reviewers using the sharing tab and transitions the proposal to the "Under Review" state.&amp;#160; Once decisions are made the whole drop box is converted to the "Cycle complete" state and the decisions and reviews become visible to the proposer.&amp;lt;/p&amp;gt;&amp;#13;
+  &amp;lt;h2&amp;gt;How It Works&amp;lt;/h2&amp;gt;&amp;#13;
+  &amp;lt;h3&amp;gt;This product defines a number of specialized workflows:&amp;lt;/h3&amp;gt;&amp;#13;
+  &amp;lt;ol&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;&amp;lt;em&amp;gt;Proposal Folder Workflow&amp;lt;/em&amp;gt; with the following state progression:&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;ol class="listTypeLowerAlpha"&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;private (viewable by manager and owner)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Accepting Submissions (all logged in users can see and create proposals within the dropbox)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;No longer Accepting submissions (visible to logged in users, but no proposals can be added)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Under Review (only reviewers can see proposals)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Under Panel Review (only panelists can see proposals)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Cycle Complete (visible&amp;#160; to logged in users)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;/ol&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Proposal Workflow with the following state progression:&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;ol class="listTypeLowerAlpha"&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Private (visible to and editable by owner, editor(s), manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Advisor Review (visible to and editable by owner, editor(s), manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Submitted (visible to&amp;#160; owner, editor(s) and editable by manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Under Review (visible to&amp;#160; reviewer(s) and editable by manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Panel Review (visible to&amp;#160; panelist(s) and editable by manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;approved_invisible (visible to&amp;#160; panelist(s) and editable by manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Approved (visible to&amp;#160; owner, editor(s), reviewer(s) and editable by manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;alternate_invisible (visible to&amp;#160; panelist(s) and editable by manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Alternate (visible to&amp;#160; owner, editor(s), reviewer(s) and editable by manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;denied_invisible (visible to&amp;#160; panelist(s) and editable by manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Denied (visible to&amp;#160; owner, editor(s), reviewer(s) and editable by manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;/ol&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;ID info Workflow with only a private state (visible and editable by owner, editor(s) and manager).&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Anonymous Peer Review Workflow with the following state progression:&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;ol class="listTypeLowerAlpha"&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Private (visible to and editable by owner (aka reviewer) and manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Submitted (visible to owner (aka reviewer) and and editable by manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Under Panel Review (visible to panelist(s) and editable by manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Cycle Complete (visible to owner, reviewer(s), and panelist(s), editable by manager)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;/ol&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Instructor Only Workflow is an always private workflow only visible to managers.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;/ol&amp;gt;&amp;#13;
+  &amp;lt;h3&amp;gt;This product defines some Dexterity based content types as well:&amp;lt;/h3&amp;gt;&amp;#13;
+  &amp;lt;ol&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Web Page: the page you are reading is special example of this (actually all the instruction pages are clones of the web page type with different default content). It is intended as a replacement for the traditional Plone type "Page". It has the advantage when building a product that it can be easily exported into a product using Portal_Setup in the &amp;lt;a class="external-link" href="../manage_main" target="_self" title=""&amp;gt;ZMI&amp;lt;/a&amp;gt; (see Plone developer documentation at &amp;lt;a class="external-link" href="http://plone.org/" target="_self" title=""&amp;gt;Plone.org&amp;lt;/a&amp;gt;)&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Proposal Drop Box: this is a container that follows the Proposal Folder Workflow. A new Proposal Drop Box with an appropriate title and a prominent warning about closing date should be created for each proposal cycle. This can be used as an assignment drop box for student work as well.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;mock proposal: this is a content type which is a simple example of how to build a proposal. The key features are that it has an upload button for uploading the submitted document and is a container into which the proposer can add other documents, which may or may not be viewable by the reviewers. This type follows the Proposal Workflow. Cloning this is a good place to start when building a proposal type for your site.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Proposer: this is an example of the content type I use to contain information about the proposer that would compromise the anonymity of the proposer. It follows the ID info Workflow, making it invisible to anyone but the proposer and authenticated users with the role of Administrator.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Mentor: this is an example of the content type I use to contain information about the faculty mentor that would compromise the anonymity of the proposing team. It follows the ID info Workflow, making it invisible to anyone but the proposer and authenticated users with the role of Administrator.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;/ol&amp;gt;&lt;/default&gt;
+        &lt;description&gt;Put your Rich Text content here.&lt;/description&gt;
+        &lt;title&gt;----&lt;/title&gt;
+      &lt;/field&gt;
+    &lt;/schema&gt;
+  &lt;/model&gt;</property>
+ <property name="model_file"></property>
+ <property name="schema_policy">dexterity</property>
+ <alias from="(Default)" to="(dynamic view)"/>
+ <alias from="edit" to="@@edit"/>
+ <alias from="sharing" to="@@sharing"/>
+ <alias from="view" to="(selected layout)"/>
+ <action title="View" action_id="view" category="object" condition_expr=""
+    description="" icon_expr="" link_target="" url_expr="string:${object_url}"
+    visible="True">
+  <permission value="View"/>
+ </action>
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
+    description="" icon_expr="" link_target=""
+    url_expr="string:${object_url}/edit" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+</object>

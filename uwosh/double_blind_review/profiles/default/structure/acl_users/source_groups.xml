@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<zodb-groups title="">
+ <group group_id="Administrators" title="Administrators" description="">
+  <principal principal_id="gutow"/>
+ </group>
+ <group group_id="Reviewers" title="Reviewers" description="">
+ </group>
+ <group group_id="Site Administrators" title="Site Administrators" description="">
+  <principal principal_id="gutow"/>
+ </group>
+ <group group_id="Submitter" title="Submitter" description="Can submit proposals">
+  <principal principal_id="test1"/>
+  <principal principal_id="test3"/>
+ </group>
+</zodb-groups>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+
+  <layer name="uwosh.double_blind_review" 
+         interface="uwosh.double_blind_review.interfaces.IDoubleBlind"/>
+
+</layers>

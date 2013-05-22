@@ -1,0 +1,17 @@
+uwosh.double_blind_review Installation
+--------------------------------------
+
+To install uwosh.double_blind_review using zc.buildout and the plone.recipe.zope2instance
+recipe to manage your project, you can do this:
+
+* Add ``uwosh.double_blind_review`` to the list of eggs to install, e.g.:
+
+    [buildout]
+    ...
+    eggs =
+        ...
+        uwosh.double_blind_review
+       
+* Re-run buildout, e.g. with:
+
+    $ ./bin/buildout
