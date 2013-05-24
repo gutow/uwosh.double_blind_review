@@ -28,6 +28,7 @@ setup(name='uwosh.double_blind_review',
           'setuptools',
           'plone.app.dexterity [grok, relations]',
           'plone.namedfile [blobs]',
+          'z3c.jbot',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

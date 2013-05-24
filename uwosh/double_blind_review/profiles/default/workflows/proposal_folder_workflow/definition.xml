@@ -115,28 +115,28 @@
   <exit-transition transition_id="to_cycle_complete"/>
   <exit-transition transition_id="to_under_review"/>
   <permission-map name="Access contents information" acquired="False">
-   <permission-role>Authenticated</permission-role>
-   <permission-role>Member</permission-role>
+   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>panelist</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
-   <permission-role>Member</permission-role>
+   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Change portal events" acquired="False">
-   <permission-role>Member</permission-role>
+   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Delete objects" acquired="True">
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
-   <permission-role>Member</permission-role>
+   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
-   <permission-role>Authenticated</permission-role>
-   <permission-role>Member</permission-role>
+   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
+   <permission-role>panelist</permission-role>
   </permission-map>
  </state>
  <state state_id="private" title="Private">
@@ -223,7 +223,7 @@
    <guard-group>Administrators</guard-group>
   </guard>
  </transition>
- <transition transition_id="to_cycle_complete" title="Mark as cycle complete" new_state="cycle_complete" trigger="USER" before_script="" after_script="make_decisions_visible">
+ <transition transition_id="to_cycle_complete" title="Mark as cycle complete" new_state="cycle_complete" trigger="USER" before_script="" after_script="">
   <description>Marks the proposal cycle as complete</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=to_cycle_complete" category="workflow" icon="">Mark as cycle complete</action>
   <guard>
