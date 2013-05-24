@@ -1066,41 +1066,41 @@
  </transition>
  <transition transition_id="to_alternate" title="To Alternate Visible" new_state="alternate" trigger="USER" before_script="" after_script="">
   <description>Moves to the Alternate Visible State.</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=to_alternate" category="workflow" icon="">Mark as alternate</action>
+  <action url="%(content_url)s/content_status_modify?workflow_action=to_alternate" category="workflow" icon="">Mark as Alternate (visible)</action>
   <guard>
    <guard-group>Administrators</guard-group>
   </guard>
  </transition>
  <transition transition_id="to_alternate_invisible" title="To alternate invisible" new_state="alternate_invisible" trigger="USER" before_script="" after_script="">
   <description>Moves the proposal to the alternate invisible state.</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=to_alternate_invisible" category="workflow" icon="">Mark as Alternate</action>
+  <action url="%(content_url)s/content_status_modify?workflow_action=to_alternate_invisible" category="workflow" icon="">Mark as Alternate (hidden)</action>
   <guard>
    <guard-group>Administrators</guard-group>
   </guard>
  </transition>
  <transition transition_id="to_approved" title="Mark as Approved" new_state="approved" trigger="USER" before_script="" after_script="">
   <description>Marks the proposal as approved.</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=to_approved" category="workflow" icon="">Mark as approved</action>
+  <action url="%(content_url)s/content_status_modify?workflow_action=to_approved" category="workflow" icon="">Mark as Approved (visible)</action>
   <guard>
    <guard-group>Administrators</guard-group>
   </guard>
  </transition>
  <transition transition_id="to_approved_invisible" title="To approved invisible" new_state="approved_invisible" trigger="USER" before_script="" after_script="">
   <description>Moves the proposal to the approved invisible state.</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=to_approved_invisible" category="workflow" icon="">Mark as Approved</action>
+  <action url="%(content_url)s/content_status_modify?workflow_action=to_approved_invisible" category="workflow" icon="">Mark as Approved (hidden)</action>
   <guard>
    <guard-group>Administrators</guard-group>
   </guard>
  </transition>
  <transition transition_id="to_denied" title="Mark as denied" new_state="denied" trigger="USER" before_script="" after_script="">
-  <action url="%(content_url)s/content_status_modify?workflow_action=to_denied" category="workflow" icon="">Mark as Denied</action>
+  <action url="%(content_url)s/content_status_modify?workflow_action=to_denied" category="workflow" icon="">Mark as Denied (visible)</action>
   <guard>
    <guard-group>Administrators</guard-group>
   </guard>
  </transition>
  <transition transition_id="to_denied_invisible" title="To denied invisible" new_state="denied_invisible" trigger="USER" before_script="" after_script="">
   <description>This moves the proposal to the Denied Invisible state </description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=to_denied_invisible" category="workflow" icon="">Mark as Denied</action>
+  <action url="%(content_url)s/content_status_modify?workflow_action=to_denied_invisible" category="workflow" icon="">Mark as Denied (hidden)</action>
   <guard>
    <guard-group>Administrators</guard-group>
   </guard>
@@ -1114,7 +1114,7 @@
  </transition>
  <transition transition_id="to_under_review" title="Mark as Under Review" new_state="under_review" trigger="USER" before_script="" after_script="">
   <description>Moves the under review state where it can be reviewed but not modified by the owner.</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=to_under_review" category="workflow" icon="">Mark as under review</action>
+  <action url="%(content_url)s/content_status_modify?workflow_action=to_under_review" category="workflow" icon="">Mark as under Review</action>
   <guard>
    <guard-group>Administrators</guard-group>
   </guard>

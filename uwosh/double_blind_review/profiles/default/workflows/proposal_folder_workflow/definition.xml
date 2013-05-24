@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <dc-workflow workflow_id="proposal_folder_workflow" title="Proposal Folder Workflow" description=" - Always editable by Administrator.  States: private, open-member can add their proposal, closed - member can see their proposals, under-review - member can see their own proposal, accepted - member can see their proposal, reviews of it and any reviews they've done." state_variable="review_state" initial_state="private" manager_bypass="False">
  <permission>Access contents information</permission>
+ <permission>Add portal content</permission>
  <permission>Change portal events</permission>
+ <permission>Delete objects</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
- <permission>Add portal content</permission>
- <permission>Delete objects</permission>
+ <permission>Sharing page: Delegate roles</permission>
  <state state_id="closed" title="No longer accepting submissions">
   <description>Not accepting submissions.</description>
   <exit-transition transition_id="open"/>
@@ -29,6 +30,9 @@
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Sharing page: Delegate roles" acquired="False">
+   <permission-role>Authenticated</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Authenticated</permission-role>
@@ -61,6 +65,9 @@
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Sharing page: Delegate roles" acquired="False">
+   <permission-role>Authenticated</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Authenticated</permission-role>
@@ -103,6 +110,9 @@
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
    <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Sharing page: Delegate roles" acquired="False">
+   <permission-role>Authenticated</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Authenticated</permission-role>
@@ -196,6 +206,9 @@
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Sharing page: Delegate roles" acquired="False">
+   <permission-role>Authenticated</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Authenticated</permission-role>
