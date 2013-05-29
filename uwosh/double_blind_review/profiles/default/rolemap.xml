@@ -2,7 +2,7 @@
 <rolemap>
   <roles>
     <role name="Submitter"/>
-    <role name="panelist"/>
+    <role name="Panelist"/>
   </roles>
   <permissions/>
 </rolemap>
