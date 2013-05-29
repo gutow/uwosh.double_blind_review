@@ -127,7 +127,7 @@
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
    <permission-role>Manager</permission-role>
@@ -146,7 +146,7 @@
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
  </state>
  <state state_id="private" title="Private">
@@ -219,41 +219,47 @@
  <transition transition_id="close" title="Stop Accepting Submissions" new_state="closed" trigger="USER" before_script="" after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=close" category="workflow" icon="">Stop Accepting Submissions</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="open" title="Open for Submissions" new_state="open" trigger="USER" before_script="" after_script="">
   <description>member can submit proposals when the folder is in this state.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=open" category="workflow" icon="">Accept Submissions</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="retract" title="Retract Proposal Folder" new_state="private" trigger="USER" before_script="" after_script="">
   <description>Returns the proposal folder to the private state.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=retract" category="workflow" icon="">Retract</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="to_cycle_complete" title="Mark as cycle complete" new_state="cycle_complete" trigger="USER" before_script="" after_script="">
   <description>Marks the proposal cycle as complete</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=to_cycle_complete" category="workflow" icon="">Mark as cycle complete</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="to_panel_review" title="To Panel Review" new_state="panel_review" trigger="USER" before_script="" after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=to_panel_review" category="workflow" icon="">Mark as under Panel Review</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="to_under_review" title="Mark as Under Review" new_state="under_review" trigger="USER" before_script="" after_script="">
   <description>Moves proposals to the Under Review State</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=to_under_review" category="workflow" icon="">Mark as under review</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <worklist worklist_id="reviewer_queue" title="">

@@ -33,7 +33,7 @@
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="Change portal events" acquired="False">
    <permission-role>Manager</permission-role>
@@ -46,7 +46,7 @@
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
  </state>
  <state state_id="private" title="Private">
@@ -108,7 +108,8 @@
   <description>Return a submission to the private state</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=send_back" category="workflow" icon="">Send Back</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="submit" title="Submit" new_state="submitted" trigger="USER" before_script="" after_script="">
@@ -122,14 +123,16 @@
   <description>Marks the assignment as having grading completed.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=to_cycle_complete" category="workflow" icon="">Mark as cycle complete</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="to_panel_review" title="To Panel Review" new_state="panel_review" trigger="USER" before_script="" after_script="">
   <description>Moves the review to the panel review state where the reviewer can no longer see it.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=to_panel_review" category="workflow" icon="">Mark as under Panel Review</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <worklist worklist_id="reviewer_queue" title="">

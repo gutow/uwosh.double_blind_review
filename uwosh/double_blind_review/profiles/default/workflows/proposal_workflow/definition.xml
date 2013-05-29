@@ -133,7 +133,7 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="Add Documents, Images, and Files" acquired="False">
    <permission-role>Manager</permission-role>
@@ -189,7 +189,7 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Editor</permission-role>
@@ -197,7 +197,7 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
  </state>
  <state state_id="alternate_invisible" title="">
@@ -232,7 +232,7 @@
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="Add Documents, Images, and Files" acquired="False">
    <permission-role>Manager</permission-role>
@@ -283,12 +283,12 @@
   <permission-map name="Sharing page: Delegate roles" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
  </state>
  <state state_id="approved" title="Approved">
@@ -323,7 +323,7 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="Add Documents, Images, and Files" acquired="False">
    <permission-role>Manager</permission-role>
@@ -377,7 +377,7 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Editor</permission-role>
@@ -385,7 +385,7 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
  </state>
  <state state_id="approved_invisible" title="">
@@ -420,7 +420,7 @@
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="Add Documents, Images, and Files" acquired="False">
    <permission-role>Manager</permission-role>
@@ -471,12 +471,12 @@
   <permission-map name="Sharing page: Delegate roles" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
  </state>
  <state state_id="denied" title="Denied">
@@ -511,7 +511,7 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="Add Documents, Images, and Files" acquired="False">
    <permission-role>Manager</permission-role>
@@ -567,7 +567,7 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Editor</permission-role>
@@ -575,7 +575,7 @@
    <permission-role>Owner</permission-role>
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
  </state>
  <state state_id="denied_invisible" title="">
@@ -610,7 +610,7 @@
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="Add Documents, Images, and Files" acquired="False">
    <permission-role>Manager</permission-role>
@@ -661,12 +661,12 @@
   <permission-map name="Sharing page: Delegate roles" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
  </state>
  <state state_id="panel_review" title="Panel Review">
@@ -706,7 +706,7 @@
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="Add Documents, Images, and Files" acquired="False">
    <permission-role>Manager</permission-role>
@@ -757,12 +757,12 @@
   <permission-map name="Sharing page: Delegate roles" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
-   <permission-role>panelist</permission-role>
+   <permission-role>Panelist</permission-role>
   </permission-map>
  </state>
  <state state_id="private" title="Private">
@@ -1048,7 +1048,8 @@
   <description>Return a submission to the private state</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=send_back" category="workflow" icon="">Send Back</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="submit" title="Submit" new_state="submitted" trigger="USER" before_script="" after_script="">
@@ -1068,55 +1069,63 @@
   <description>Moves to the Alternate Visible State.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=to_alternate" category="workflow" icon="">Mark as Alternate (visible)</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="to_alternate_invisible" title="To alternate invisible" new_state="alternate_invisible" trigger="USER" before_script="" after_script="">
   <description>Moves the proposal to the alternate invisible state.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=to_alternate_invisible" category="workflow" icon="">Mark as Alternate (hidden)</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="to_approved" title="Mark as Approved" new_state="approved" trigger="USER" before_script="" after_script="">
   <description>Marks the proposal as approved.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=to_approved" category="workflow" icon="">Mark as Approved (visible)</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="to_approved_invisible" title="To approved invisible" new_state="approved_invisible" trigger="USER" before_script="" after_script="">
   <description>Moves the proposal to the approved invisible state.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=to_approved_invisible" category="workflow" icon="">Mark as Approved (hidden)</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="to_denied" title="Mark as denied" new_state="denied" trigger="USER" before_script="" after_script="">
   <action url="%(content_url)s/content_status_modify?workflow_action=to_denied" category="workflow" icon="">Mark as Denied (visible)</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="to_denied_invisible" title="To denied invisible" new_state="denied_invisible" trigger="USER" before_script="" after_script="">
   <description>This moves the proposal to the Denied Invisible state </description>
   <action url="%(content_url)s/content_status_modify?workflow_action=to_denied_invisible" category="workflow" icon="">Mark as Denied (hidden)</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="to_panel_review" title="To Panel Review" new_state="panel_review" trigger="USER" before_script="" after_script="">
   <description>Moves the proposal into the Panel Review State</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=to_panel_review" category="workflow" icon="">Mark as under Panel Review</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <transition transition_id="to_under_review" title="Mark as Under Review" new_state="under_review" trigger="USER" before_script="" after_script="">
   <description>Moves the under review state where it can be reviewed but not modified by the owner.</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=to_under_review" category="workflow" icon="">Mark as under Review</action>
   <guard>
-   <guard-group>Administrators</guard-group>
+      <guard-role>Manager</guard-role>
+      <guard-role>Site Administrator</guard-role>      
   </guard>
  </transition>
  <worklist worklist_id="reviewer_queue" title="">

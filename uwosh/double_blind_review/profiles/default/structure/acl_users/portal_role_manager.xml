@@ -8,11 +8,6 @@
   <principal principal_id="Administrators"/>
  </role>
  <role role_id="Member" title="" description="">
-  <principal principal_id="gutow"/>
-  <principal principal_id="potratzg"/>
-  <principal principal_id="test1"/>
-  <principal principal_id="test2"/>
-  <principal principal_id="test3"/>
  </role>
  <role role_id="Owner" title="" description="">
  </role>
@@ -27,6 +22,6 @@
  <role role_id="Submitter" title="" description="">
   <principal principal_id="Submitter"/>
  </role>
- <role role_id="panelist" title="" description="">
+ <role role_id="Panelist" title="" description="">
  </role>
 </zodb-roles>

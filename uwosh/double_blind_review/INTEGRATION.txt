@@ -58,13 +58,13 @@ Good, generic users cannot access this information.  Now check that managers can
 
 The product adds two special roles that are used to control access to proposals
 at different times: 1) 'submitter' anybody with this role can submit a proposal
-(usually assigned to the Faculty group on my Campus); 2) 'panelist' is a special
+(usually assigned to the Faculty group on my Campus); 2) 'Panelist' is a special
 form of reviewer, used to allow access by the final decision panel to proposals
 and reviews when they are in the 'panel_review' state.  Check that these exist,
 since workflow behavior depends on these roles.
     >>>'submitter' in self.portal.portal_roles
     True
-    >>>'panelist' in self.portal.portal_roles
+    >>>'Panelist' in self.portal.portal_roles
     True
     
 Now check that the Dexterity type 'proposal_drop_box' has been defined and
