@@ -28,8 +28,8 @@ setup(name='uwosh.double_blind_review',
           'setuptools',
           'plone.app.dexterity [grok, relations]',
           'plone.namedfile [blobs]',
-          #'z3c.jbot', this doesn't work.  Why?
           # -*- Extra requirements: -*-
+          'z3c.jbot',
       ],
       entry_points="""
       # -*- Entry points: -*-
