@@ -85,11 +85,11 @@ and 'site manager' can create one of these drop boxes.
 Or site_roles = self.portal.portal_roles?
     >>> site_roles = self.portal.getPortalRoles()
     >>> for role in site_roles:
-...        if role != 'manager'and role !='site manager' :
-...            # we are looking for a different result for managers.
-...            self.login(default_user)
-...            self.setRole(role)
-...            self.portal.invokeFactory('uwosh.double_blind_review.proposal_drop_box', 'test drop box')
+    ...    if role != 'manager'and role !='site manager' :
+    ...        # we are looking for a different result for managers.
+    ...        self.login(default_user)
+    ...        self.setRole(role)
+    ...        self.portal.invokeFactory('uwosh.double_blind_review.proposal_drop_box', 'test drop box')
     RaiseError:
     ...
     Permission Denied
