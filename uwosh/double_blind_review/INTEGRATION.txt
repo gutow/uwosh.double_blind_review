@@ -40,20 +40,20 @@ are correct.
     True
 
     >>> instructions = self.portal['double-blind-review-instructions']
-    >>> default_user = PloneTestCase.default_user
+    >>> default_user = ptc.default_user
     >>> self.login(default_user)
-    >>> self.checkPerm(AccessContentsInformation,instructions))
+    >>> self.checkPerm(AccessContentsInformation,instructions)
     False
 
 Good, generic users cannot access this information.  Now check that managers can.
     >>> self.portal.acl_users._doAddUser('manager', 'secret', ['Manager'], [])
     >>> self.login('manager')
-    >>> self.checkPerm(AccessContentsInformation,instructions))
+    >>> self.checkPerm(AccessContentsInformation,instructions)
     True
 
     >>> self.portal.acl_users._doAddUser('site manager', 'secret', ['Site Administrator'], [])
     >>> self.login('site manager')
-    >>> self.checkPerm(AccessContentsInformation,instructions))
+    >>> self.checkPerm(AccessContentsInformation,instructions)
     True
 
 The product adds two special roles that are used to control access to proposals
