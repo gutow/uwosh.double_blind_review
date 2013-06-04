@@ -36,12 +36,12 @@ This product installs a folderish object loaded with instructions at the root
 level of the portal which is only available to those with roles of "Site 
 Administrator" or "Manager".  Check that the permissions  and workflow state
 are correct.
-    >>> self.portal.has_key('double-blind-review-instructions')
-    True
+    >>> # self.portal.has_key('double-blind-review-instructions')
+    # True
 
     >>> instructions = self.portal['double-blind-review-instructions']
-    >>> default_user = ptc.default_user
-    >>> self.login(default_user)
+    >>> self.portal.acl_users._doAddUser('member', 'secret', ['Member'], [])
+    >>> self.login('member')
     >>> self.checkPerm(AccessContentsInformation,instructions)
     False
 
