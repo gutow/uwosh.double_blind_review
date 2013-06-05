@@ -36,24 +36,25 @@ This product installs a folderish object loaded with instructions at the root
 level of the portal which is only available to those with roles of "Site 
 Administrator" or "Manager".  Check that the permissions  and workflow state
 are correct.
-    >>> portal.has_key('double-blind-review-instructions')
-    True
+    #>>> portal.has_key('double-blind-review-instructions')
+    #True
 
+    >>> from Products.CMFCore.utils import _checkPermission as checkPerm
     >>> instructions = portal['double-blind-review-instructions']
     >>> user = portal.acl_users._doAddUser('member', 'secret', ['Member'], [])
-    >>> portal.login(user)
-    >>> portal.checkPerm(AccessContentsInformation,instructions)
+    >>> self.login(user)
+    >>> checkPerm(AccessContentsInformation,instructions)
     False
 
 Good, generic users cannot access this information.  Now check that managers can.
     >>> user = portal.acl_users._doAddUser('manager', 'secret', ['Manager'], [])
     >>> portal.login(user)
-    >>> user.checkPerm(AccessContentsInformation,instructions)
+    >>> checkPerm(AccessContentsInformation,instructions)
     True
 
     >>> user = portal.acl_users._doAddUser('site manager', 'secret', ['Site Administrator'], [])
-    >>> portal.login(user)
-    >>> user.checkPerm(AccessContentsInformation,instructions)
+    >>> self.login(user)
+    >>> checkPerm(AccessContentsInformation,instructions)
     True
 
 The product adds two special roles that are used to control access to proposals
