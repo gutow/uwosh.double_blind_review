@@ -45,7 +45,6 @@ are correct.::
     >>> user = portal.acl_users._doAddUser('member', 'secret', ['Member'], [])
     >>> self.login('member')
     >>> checkPerm(AccessContentsInformation,instructions)
-    False
 
 Good, generic users cannot access this information.  Now check that managers can.::
     >>> user = portal.acl_users._doAddUser('manager', 'secret', ['Manager'], [])
@@ -65,29 +64,29 @@ form of reviewer, used to allow access by the final decision panel to proposals
 and reviews when they are in the 'panel_review' state.  Check that these exist,
 since workflow behavior depends on these roles.::
     >>> from Products.CMFCore.MembershipTool import MembershipTool
-    >>> 'submitter' in MembershipTool.getPortalRoles()
+    >>> 'submitter' in self.MembershipTool.getPortalRoles()
     True
-    >>> 'Panelist' in MembershipTool.getPortalRoles()
+    >>> 'Panelist' in self.MembershipTool.getPortalRoles()
     True
     
 Now check that the Dexterity type 'proposal_drop_box' has been defined and
 follows the workflow 'proposal_folder_workflow'.::
     >>> from Products.CMFCore.WorkflowTool import WorkflowTool
-    >>> workflows = WorkflowTool.getWorkflowIds()
+    >>> workflows = self.WorkflowTool.getWorkflowIds()
     >>> 'proposal_folder_workflow' in workflows
     True
    
     >>> 'proposal_drop_box' in portal.portal_types
     True
    
-    >>> assigned_workflow = workflowTool.getChainForPortalType(portal.portal_types.proposal_drop_box)
+    >>> assigned_workflow = self.workflowTool.getChainForPortalType(portal.portal_types.proposal_drop_box)
     >>> assigned_workflow.id == 'proposal_folder_workflow'
     True
     
 Now iterate through all the roles on the portal and make sure that only 'manager'
 and 'site manager' can create one of these drop boxes.
 Or site_roles = portal.portal_roles?::
-    >>> site_roles = MembershipTool.getPortalRoles()
+    >>> site_roles = self.MembershipTool.getPortalRoles()
     >>> for role in site_roles:
     ...    if role != 'manager'and role !='site manager' :
     ...        # we are looking for a different result for managers.
@@ -100,13 +99,13 @@ Or site_roles = portal.portal_roles?::
 
 Now check our managers::
     >>> self.login('manager')
-    >>> self.setRole('manager')
+    >>> #self.setRole('manager')
     >>> portal.invokeFactory('uwosh.double_blind_review.proposal_drop_box', 'test manager drop box')
 
 Could set up something for a response.::
     
     >>> self.login('site manager')
-    >>> self.setRole('site manager')
+    >>> #self.setRole('site manager')
     >>> portal.invokeFactory('uwosh.double_blind_review.proposal_drop_box', 'test site manager drop box')
     
 Convert a drop box that should have been created in the 'private' state
@@ -121,14 +120,14 @@ to 'open' (accepting submissions).::
 
 Now check that the Dexterity type 'mock_proposal' has been defined and
 follows the workflow 'proposal_workflow'.::
-    >>> workflows = workflowTool.getWorkflowIds()
+    >>> workflows = self.workflowTool.getWorkflowIds()
     >>> 'proposal_workflow' in workflows
     True
    
     >>> 'mock_proposal' in portal.portal_types
     True
    
-    >>> assigned_workflow = workflowTool.getChainForPortalType(portal.portal_types.mock_proposal)
+    >>> assigned_workflow = self.workflowTool.getChainForPortalType(portal.portal_types.mock_proposal)
     >>> assigned_workflow.id == 'proposal_workflow'
     True
     
