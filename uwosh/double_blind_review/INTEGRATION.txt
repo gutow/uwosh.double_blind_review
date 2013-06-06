@@ -35,25 +35,26 @@ the tests as doctests in order to provide some explanation of the functionality.
 This product installs a folderish object loaded with instructions at the root 
 level of the portal which is only available to those with roles of "Site 
 Administrator" or "Manager".  Check that the permissions  and workflow state
-are correct.
+are correct.::
     #>>> portal.has_key('double-blind-review-instructions')
     #True
 
     >>> from Products.CMFCore.utils import _checkPermission as checkPerm
+    >>> from Products.CMFCore.permissions import AccessContentsInformation
     >>> instructions = portal['double-blind-review-instructions']
     >>> user = portal.acl_users._doAddUser('member', 'secret', ['Member'], [])
-    >>> self.login(user)
+    >>> self.login('member')
     >>> checkPerm(AccessContentsInformation,instructions)
     False
 
-Good, generic users cannot access this information.  Now check that managers can.
+Good, generic users cannot access this information.  Now check that managers can.::
     >>> user = portal.acl_users._doAddUser('manager', 'secret', ['Manager'], [])
-    >>> portal.login(user)
+    >>> portal.login('manager')
     >>> checkPerm(AccessContentsInformation,instructions)
     True
 
     >>> user = portal.acl_users._doAddUser('site manager', 'secret', ['Site Administrator'], [])
-    >>> self.login(user)
+    >>> self.login('site manager')
     >>> checkPerm(AccessContentsInformation,instructions)
     True
 
@@ -62,15 +63,17 @@ at different times: 1) 'submitter' anybody with this role can submit a proposal
 (usually assigned to the Faculty group on my Campus); 2) 'Panelist' is a special
 form of reviewer, used to allow access by the final decision panel to proposals
 and reviews when they are in the 'panel_review' state.  Check that these exist,
-since workflow behavior depends on these roles.
-    >>> 'submitter' in portal.getPortalRoles()
+since workflow behavior depends on these roles.::
+    >>> from Products.CMFCore.MembershipTool import MembershipTool
+    >>> 'submitter' in portal.MembershipTool.getPortalRoles()
     True
-    >>> 'Panelist' in portal.getPortalRoles()
+    >>> 'Panelist' in portal.MembershipTool.getPortalRoles()
     True
     
 Now check that the Dexterity type 'proposal_drop_box' has been defined and
-follows the workflow 'proposal_folder_workflow'.
-    >>> workflows = portal.getWorkflowIds()
+follows the workflow 'proposal_folder_workflow'.::
+    >>> from Products.CMFCore.WorkflowTool import WorkflowTool
+    >>> workflows = portal.WorkflowTool.getWorkflowIds()
     >>> 'proposal_folder_workflow' in workflows
     True
    
@@ -83,31 +86,31 @@ follows the workflow 'proposal_folder_workflow'.
     
 Now iterate through all the roles on the portal and make sure that only 'manager'
 and 'site manager' can create one of these drop boxes.
-Or site_roles = portal.portal_roles?
-    >>> site_roles = portal.getPortalRoles()
+Or site_roles = portal.portal_roles?::
+    >>> site_roles = portal.MembershipTool.getPortalRoles()
     >>> for role in site_roles:
     ...    if role != 'manager'and role !='site manager' :
     ...        # we are looking for a different result for managers.
-    ...        portal.login(default_user)
-    ...        portal.setRole(role)
+    ...        self.login(default_user)
+    ...        self.setRole(role)
     ...        portal.invokeFactory('uwosh.double_blind_review.proposal_drop_box', 'test drop box')
     RaiseError:
     ...
     Permission Denied
 
-Now check our managers    
-    >>> portal.login('manager')
-    >>> portal.setRole('manager')
+Now check our managers::
+    >>> self.login('manager')
+    >>> self.setRole('manager')
     >>> portal.invokeFactory('uwosh.double_blind_review.proposal_drop_box', 'test manager drop box')
 
-Could set up something for a response.
+Could set up something for a response.::
     
-    >>> portal.login('site manager')
-    >>> portal.setRole('site manager')
+    >>> self.login('site manager')
+    >>> self.setRole('site manager')
     >>> portal.invokeFactory('uwosh.double_blind_review.proposal_drop_box', 'test site manager drop box')
     
 Convert a drop box that should have been created in the 'private' state
-to 'open' (accepting submissions).
+to 'open' (accepting submissions).::
     >>> working_drop = portal['test-site-manager-drop-box']
     >>> 'private' == portal.portal_workflow.getInfoFor(working_drop, 'review_state')
     True
@@ -117,7 +120,7 @@ to 'open' (accepting submissions).
     True
 
 Now check that the Dexterity type 'mock_proposal' has been defined and
-follows the workflow 'proposal_workflow'.
+follows the workflow 'proposal_workflow'.::
     >>> workflows = portal.workflowTool.getWorkflowIds()
     >>> 'proposal_workflow' in workflows
     True
@@ -131,10 +134,10 @@ follows the workflow 'proposal_workflow'.
     
 Now we can test that members can add a proposal, but only submit if they also 
 have the role of 'submitter'.  I'm going to be careful and make two new users
-for this test.
-    >>> portal.acl_users._doAddUser('student1', 'secret', ['Member'], [])
-    >>> portal.acl_users._doAddUser('faculty1', 'secret', ['Submitter'], [])
-    >>> portal.login('student1')
+for this test.::
+    >>> user = portal.acl_users._doAddUser('student1', 'secret', ['Member'], [])
+    >>> user = portal.acl_users._doAddUser('faculty1', 'secret', ['Submitter'], [])
+    >>> self.login('student1')
     >>> working_drop.invokeFactory('uwosh.double_blind_review.mock_proposal', 'proposal1')
     >>> proposal1 = working_drop['proposal1']
     >>> 'private' == portal.portal_workflow.getInfoFor(proposal1, 'review_state')
