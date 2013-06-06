@@ -64,18 +64,16 @@ form of reviewer, used to allow access by the final decision panel to proposals
 and reviews when they are in the 'panel_review' state.  Check that these exist,
 since workflow behavior depends on these roles.::
     >>> roles = portal.acl_users.portal_role_manager.valid_roles()
-    >>> roles
-    ['manager','editor']
-    >>> 'submitter' in roles
+    >>> 'Submitter' in roles
     True
     >>> 'Panelist' in roles
     True
     
 Now check that the Dexterity type 'proposal_drop_box' has been defined and
 follows the workflow 'proposal_folder_workflow'.::
-    >>> from Products.CMFCore.WorkflowTool import WorkflowTool
-    >>> WorkflowTool = WorkflowTool()
-    >>> workflows = WorkflowTool.getWorkflowIds()
+    >>> workflows = portal.portal_workflow.listWorkflows()
+    >>> workflows
+    ['eny', 'meeny']
     >>> 'proposal_folder_workflow' in workflows
     True
    
