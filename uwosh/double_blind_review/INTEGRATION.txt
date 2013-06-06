@@ -65,16 +65,16 @@ and reviews when they are in the 'panel_review' state.  Check that these exist,
 since workflow behavior depends on these roles.::
     >>> from Products.CMFCore.MembershipTool import MembershipTool
     >>> MembershipTool = MembershipTool()
-    >>> 'submitter' in MembershipTool.getPortalRoles(self)
+    >>> 'submitter' in MembershipTool.getPortalRoles()
     True
-    >>> 'Panelist' in MembershipTool.getPortalRoles(self)
+    >>> 'Panelist' in MembershipTool.getPortalRoles()
     True
     
 Now check that the Dexterity type 'proposal_drop_box' has been defined and
 follows the workflow 'proposal_folder_workflow'.::
     >>> from Products.CMFCore.WorkflowTool import WorkflowTool
     >>> WorkflowTool = WorkflowTool()
-    >>> workflows = WorkflowTool.getWorkflowIds(self)
+    >>> workflows = WorkflowTool.getWorkflowIds()
     >>> 'proposal_folder_workflow' in workflows
     True
    
@@ -94,7 +94,7 @@ Or site_roles = portal.portal_roles?::
     ...        # we are looking for a different result for managers.
     ...        self.login(default_user)
     ...        #self.setRole(role)
-    ...        portal.invokeFactory('uwosh.double_blind_review.proposal_drop_box', 'test drop box')
+    ...        portal.invokeFactory('portal.portal_types.proposal_drop_box', 'test drop box')
     RaiseError:
     ...
     Permission Denied
@@ -102,13 +102,13 @@ Or site_roles = portal.portal_roles?::
 Now check our managers::
     >>> self.login('manager')
     >>> #self.setRole('manager')
-    >>> portal.invokeFactory('uwosh.double_blind_review.proposal_drop_box', 'test manager drop box')
+    >>> portal.invokeFactory('portal.portal_types.proposal_drop_box', 'test manager drop box')
 
 Could set up something for a response.::
     
     >>> self.login('site manager')
     >>> #self.setRole('site manager')
-    >>> portal.invokeFactory('uwosh.double_blind_review.proposal_drop_box', 'test site manager drop box')
+    >>> portal.invokeFactory('portal.portal_types.proposal_drop_box', 'test site manager drop box')
     
 Convert a drop box that should have been created in the 'private' state
 to 'open' (accepting submissions).::
