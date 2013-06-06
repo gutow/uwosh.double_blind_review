@@ -49,14 +49,14 @@ are correct.::
 
 Good, generic users cannot access this information.  Now check that managers can.::
     >>> user = portal.acl_users._doAddUser('manager', 'secret', ['Manager'], [])
-    >>> portal.login('manager')
+    >>> self.login('manager')
     >>> checkPerm(AccessContentsInformation,instructions)
-    True
+    1
 
     >>> user = portal.acl_users._doAddUser('site manager', 'secret', ['Site Administrator'], [])
     >>> self.login('site manager')
     >>> checkPerm(AccessContentsInformation,instructions)
-    True
+    1
 
 The product adds two special roles that are used to control access to proposals
 at different times: 1) 'submitter' anybody with this role can submit a proposal
@@ -65,15 +65,15 @@ form of reviewer, used to allow access by the final decision panel to proposals
 and reviews when they are in the 'panel_review' state.  Check that these exist,
 since workflow behavior depends on these roles.::
     >>> from Products.CMFCore.MembershipTool import MembershipTool
-    >>> 'submitter' in portal.MembershipTool.getPortalRoles()
+    >>> 'submitter' in MembershipTool.getPortalRoles()
     True
-    >>> 'Panelist' in portal.MembershipTool.getPortalRoles()
+    >>> 'Panelist' in MembershipTool.getPortalRoles()
     True
     
 Now check that the Dexterity type 'proposal_drop_box' has been defined and
 follows the workflow 'proposal_folder_workflow'.::
     >>> from Products.CMFCore.WorkflowTool import WorkflowTool
-    >>> workflows = portal.WorkflowTool.getWorkflowIds()
+    >>> workflows = WorkflowTool.getWorkflowIds()
     >>> 'proposal_folder_workflow' in workflows
     True
    
@@ -87,7 +87,7 @@ follows the workflow 'proposal_folder_workflow'.::
 Now iterate through all the roles on the portal and make sure that only 'manager'
 and 'site manager' can create one of these drop boxes.
 Or site_roles = portal.portal_roles?::
-    >>> site_roles = portal.MembershipTool.getPortalRoles()
+    >>> site_roles = MembershipTool.getPortalRoles()
     >>> for role in site_roles:
     ...    if role != 'manager'and role !='site manager' :
     ...        # we are looking for a different result for managers.
@@ -121,7 +121,7 @@ to 'open' (accepting submissions).::
 
 Now check that the Dexterity type 'mock_proposal' has been defined and
 follows the workflow 'proposal_workflow'.::
-    >>> workflows = portal.workflowTool.getWorkflowIds()
+    >>> workflows = workflowTool.getWorkflowIds()
     >>> 'proposal_workflow' in workflows
     True
    
