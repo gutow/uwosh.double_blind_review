@@ -63,11 +63,10 @@ at different times: 1) 'submitter' anybody with this role can submit a proposal
 form of reviewer, used to allow access by the final decision panel to proposals
 and reviews when they are in the 'panel_review' state.  Check that these exist,
 since workflow behavior depends on these roles.::
-    >>> from Products.CMFCore.MembershipTool import MembershipTool
-    >>> MembershipTool = MembershipTool()
-    >>> 'submitter' in MembershipTool.getPortalRoles()
+    >>> roles = portal.acl_users.portal_role_manager.valid_roles()
+    >>> 'submitter' in roles
     True
-    >>> 'Panelist' in MembershipTool.getPortalRoles()
+    >>> 'Panelist' in roles
     True
     
 Now check that the Dexterity type 'proposal_drop_box' has been defined and
