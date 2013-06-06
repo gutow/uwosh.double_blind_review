@@ -64,6 +64,8 @@ form of reviewer, used to allow access by the final decision panel to proposals
 and reviews when they are in the 'panel_review' state.  Check that these exist,
 since workflow behavior depends on these roles.::
     >>> roles = portal.acl_users.portal_role_manager.valid_roles()
+    >>> roles
+    ['manager','editor']
     >>> 'submitter' in roles
     True
     >>> 'Panelist' in roles
