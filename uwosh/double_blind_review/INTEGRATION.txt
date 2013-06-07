@@ -36,6 +36,8 @@ This product installs a folderish object loaded with instructions at the root
 level of the portal which is only available to those with roles of "Site 
 Administrator" or "Manager".  Check that the permissions  and workflow state
 are correct.::
+    >>> user = portal.acl_users._doAddUser('manager', 'secret', ['Manager'], [])
+    >>> self.login('manager')    
     >>> root_content = portal.listFolderContents()
     >>> root_content
     ['eeny', 'meeny']
@@ -81,7 +83,7 @@ follows the workflow 'proposal_folder_workflow'.::
     >>> 'proposal_drop_box' in portal.portal_types
     True
    
-    >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(proposal_drop_box)
+    >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(portal.portal_types.proposal_drop_box)
     >>> assigned_workflow == 'proposal_folder_workflow'
     True
     
@@ -89,24 +91,27 @@ Now iterate through all the roles on the portal and make sure that only 'manager
 and 'site manager' can create one of these drop boxes.::
     >>> for role in roles:
     ...    if role != 'manager'and role !='site manager' :
+    ...        user = portal.acl_users._doAddUser('user', 'secret', [role], [])
     ...        # we are looking for a different result for managers.
-    ...        self.login(user_name)
+    ...        self.login('user')
     ...        #self.setRole(role)
     ...        portal.invokeFactory('proposal_drop_box', 'test drop box')
-    RaiseError:
+    Exception raised:
     ...
-    Permission Denied
+        Unauthorized: Cannot create proposal_drop_box
 
 Now check our managers::
     >>> self.login('manager')
     >>> #self.setRole('manager')
     >>> portal.invokeFactory('proposal_drop_box', 'test manager drop box')
-
+    'test manager drop box'
+    
 Could set up something for a response.::
     
     >>> self.login('site manager')
     >>> #self.setRole('site manager')
     >>> portal.invokeFactory('proposal_drop_box', 'test site manager drop box')
+    'test site manager drop box'
     
 Convert a drop box that should have been created in the 'private' state
 to 'open' (accepting submissions).::
@@ -126,7 +131,7 @@ follows the workflow 'proposal_workflow'.::
     >>> 'mock_proposal' in portal.portal_types
     True
    
-    >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(mock_proposal)
+    >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(portal.portal_types.mock_proposal)
     >>> assigned_workflow == 'proposal_workflow'
     True
     
