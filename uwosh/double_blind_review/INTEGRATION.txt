@@ -72,27 +72,23 @@ since workflow behavior depends on these roles.::
 Now check that the Dexterity type 'proposal_drop_box' has been defined and
 follows the workflow 'proposal_folder_workflow'.::
     >>> workflows = portal.portal_workflow.listWorkflows()
-    >>> workflows
-    ['eny', 'meeny']
     >>> 'proposal_folder_workflow' in workflows
     True
    
     >>> 'proposal_drop_box' in portal.portal_types
     True
    
-    >>> assigned_workflow = WorkflowTool.getChainForPortalType(portal.portal_types.proposal_drop_box)
+    >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(portal.portal_types.proposal_drop_box)
     >>> assigned_workflow.id == 'proposal_folder_workflow'
     True
     
 Now iterate through all the roles on the portal and make sure that only 'manager'
-and 'site manager' can create one of these drop boxes.
-Or site_roles = portal.portal_roles?::
-    >>> site_roles = MembershipTool.getPortalRoles()
-    >>> for role in site_roles:
+and 'site manager' can create one of these drop boxes.::
+    >>> for role in roles:
     ...    if role != 'manager'and role !='site manager' :
     ...        # we are looking for a different result for managers.
-    ...        self.login(default_user)
-    ...        #self.setRole(role)
+    ...        self.login(user_name)
+    ...        self.setRole(role)
     ...        portal.invokeFactory('portal.portal_types.proposal_drop_box', 'test drop box')
     RaiseError:
     ...
@@ -121,14 +117,14 @@ to 'open' (accepting submissions).::
 
 Now check that the Dexterity type 'mock_proposal' has been defined and
 follows the workflow 'proposal_workflow'.::
-    >>> workflows = WorkflowTool.getWorkflowIds()
+    >>> workflows = portal.portal_workflow.getWorkflowIds()
     >>> 'proposal_workflow' in workflows
     True
    
     >>> 'mock_proposal' in portal.portal_types
     True
    
-    >>> assigned_workflow = WorkflowTool.getChainForPortalType(portal.portal_types.mock_proposal)
+    >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(portal.portal_types.mock_proposal)
     >>> assigned_workflow.id == 'proposal_workflow'
     True
     
