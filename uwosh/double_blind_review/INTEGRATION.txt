@@ -39,8 +39,6 @@ are correct.::
     >>> user = portal.acl_users._doAddUser('manager', 'secret', ['Manager'], [])
     >>> self.login('manager')    
     >>> root_content = portal.contentIds()
-    >>> root_content
-    ['eeny', 'meeny']
     >>> 'double-blind-review-instructions' in root_content
     True
 
@@ -84,6 +82,8 @@ follows the workflow 'proposal_folder_workflow'.::
     True
    
     >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(portal.portal_types.proposal_drop_box)
+    >>> assigned_workflow
+    'something'
     >>> assigned_workflow == 'proposal_folder_workflow'
     True
     
