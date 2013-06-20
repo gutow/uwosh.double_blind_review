@@ -83,7 +83,7 @@ follows the workflow 'proposal_folder_workflow'.::
     
     >>> portal.portal_types.proposal_drop_box
    
-    >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(portal.portal_types.proposal_drop_box)
+    >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(portal.portal_types)
     >>> assigned_workflow
     'something'
     >>> assigned_workflow == 'proposal_folder_workflow'
@@ -117,7 +117,7 @@ Could set up something for a response.::
     
 Convert a drop box that should have been created in the 'private' state
 to 'open' (accepting submissions).::
-    >>> working_drop = portal['test-site-manager-drop-box']
+    >>> working_drop = portal['test_site_manager_drop_box']
     >>> 'private' == portal.portal_workflow.getInfoFor(working_drop, 'review_state')
     True
     
