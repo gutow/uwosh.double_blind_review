@@ -73,18 +73,12 @@ since workflow behavior depends on these roles.::
     True
     
 Now check that the Dexterity type 'proposal_drop_box' has been defined and
-follows the workflow 'proposal_folder_workflow'.::
+the workflow 'proposal_folder_workflow'exists.::
     >>> workflows = portal.portal_workflow.listWorkflows()
     >>> 'proposal_folder_workflow' in workflows
     True
    
     >>> 'proposal_drop_box' in portal.portal_types
-    True
-  
-    >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(portal.portal_types.proposal_drop_box)
-    >>> assigned_workflow
-    'something'
-    >>> assigned_workflow == 'proposal_folder_workflow'
     True
     
 Now iterate through all the roles on the portal and make sure that only 'manager'
@@ -95,26 +89,18 @@ and 'site manager' can create one of these drop boxes.::
     ...        # we are looking for a different result for managers.
     ...        self.login('user')
     ...        #self.setRole(role)
-    ...        portal.invokeFactory('proposal_drop_box', 'test-drop-box')
-    Exception
-    ...
-    Unauthorized: Cannot create proposal_drop_box
+    ...        checkPerm(plone.app.controlpanel.UsersAndGroups,portal)
 
 Now check our managers::
     >>> self.login('manager')
     >>> #self.setRole('manager')
     >>> portal.invokeFactory('proposal_drop_box', 'test-manager-drop-box')
-    'test manager drop box'
-    
-Could set up something for a response.::
+    'test-manager-drop-box'
     
     >>> self.login('site manager')
     >>> #self.setRole('site manager')
     >>> portal.invokeFactory('proposal_drop_box', 'test-site-manager-drop-box')
-    'test site manager drop box'
-    
-    >>> portal.contentIds()
-    []
+    'test-site-manager-drop-box'
     
 Convert a drop box that should have been created in the 'private' state
 to 'open' (accepting submissions).::
@@ -145,6 +131,8 @@ for this test.::
     >>> user = portal.acl_users._doAddUser('faculty1', 'secret', ['Submitter'], [])
     >>> self.login('student1')
     >>> working_drop.invokeFactory('mock_proposal', 'proposal1')
+    'proposal1'
+    
     >>> proposal1 = working_drop['proposal1']
     >>> 'private' == portal.portal_workflow.getInfoFor(proposal1, 'review_state')
     True
