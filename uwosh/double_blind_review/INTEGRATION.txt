@@ -39,9 +39,9 @@ are correct.::
     >>> user = portal.acl_users._doAddUser('manager', 'secret', ['Manager'], [])
     >>> self.login('manager')    
     >>> root_content = portal.listFolderContents()
-    >>> root_content.items().id()
+    >>> root_content
     ['eeny', 'meeny']
-    >>> 'double-blind-review-instructions' in root_content.items().id()
+    >>> 'double-blind-review-instructions' in root_content
     True
 
     >>> from Products.CMFCore.utils import _checkPermission as checkPerm
