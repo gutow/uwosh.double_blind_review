@@ -81,7 +81,7 @@ follows the workflow 'proposal_folder_workflow'.::
     >>> 'proposal_drop_box' in portal.portal_types
     True
   
-    >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(proposal_drop_box)
+    >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(portal.portal_types.proposal_drop_box)
     >>> assigned_workflow
     'something'
     >>> assigned_workflow == 'proposal_folder_workflow'
@@ -95,22 +95,22 @@ and 'site manager' can create one of these drop boxes.::
     ...        # we are looking for a different result for managers.
     ...        self.login('user')
     ...        #self.setRole(role)
-    ...        portal.invokeFactory('proposal_drop_box', 'test drop box')
-    Exception raised:
+    ...        portal.invokeFactory('proposal_drop_box', 'test-drop-box')
+    Exception
     ...
-        Unauthorized: Cannot create proposal_drop_box
+    Unauthorized: Cannot create proposal_drop_box
 
 Now check our managers::
     >>> self.login('manager')
     >>> #self.setRole('manager')
-    >>> portal.invokeFactory('proposal_drop_box', 'test manager drop box')
+    >>> portal.invokeFactory('proposal_drop_box', 'test-manager-drop-box')
     'test manager drop box'
     
 Could set up something for a response.::
     
     >>> self.login('site manager')
     >>> #self.setRole('site manager')
-    >>> portal.invokeFactory('proposal_drop_box', 'test site manager drop box')
+    >>> portal.invokeFactory('proposal_drop_box', 'test-site-manager-drop-box')
     'test site manager drop box'
     
     >>> portal.contentIds()
