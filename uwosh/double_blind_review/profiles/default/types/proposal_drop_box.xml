@@ -21,7 +21,7 @@
   <element value="view"/>
  </property>
  <property name="default_view_fallback">False</property>
- <property name="add_permission">cmf.ManagePortal</property>
+ <property name="add_permission">plone.app.controlpanel.UsersAndGroups</property>
  <property name="klass">plone.dexterity.content.Container</property>
  <property name="behaviors">
   <element value="plone.app.content.interfaces.INameFromTitle"/>
