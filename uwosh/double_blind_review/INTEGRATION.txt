@@ -113,9 +113,12 @@ Could set up something for a response.::
     >>> portal.invokeFactory('proposal_drop_box', 'test site manager drop box')
     'test site manager drop box'
     
+    >>> portal.contentIds()
+    []
+    
 Convert a drop box that should have been created in the 'private' state
 to 'open' (accepting submissions).::
-    >>> working_drop = portal['test site manager drop box']
+    >>> working_drop = portal['test-site-manager-drop-box']
     >>> 'private' == portal.portal_workflow.getInfoFor(working_drop, 'review_state')
     True
     
