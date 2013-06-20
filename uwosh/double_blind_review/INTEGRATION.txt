@@ -80,8 +80,10 @@ follows the workflow 'proposal_folder_workflow'.::
    
     >>> 'proposal_drop_box' in portal.portal_types
     True
+    
+    >>> portal.portal_types.proposal_drop_box
    
-    >>> assigned_workflow = portal.portal_workflow.getWorkflowsFor(portal.portal_types.proposal_drop_box)
+    >>> assigned_workflow = portal.portal_workflow.getChainForPortalType(portal.portal_types.proposal_drop_box)
     >>> assigned_workflow
     'something'
     >>> assigned_workflow == 'proposal_folder_workflow'
