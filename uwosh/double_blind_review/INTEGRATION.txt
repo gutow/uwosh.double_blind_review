@@ -233,4 +233,93 @@ After editting they submit the proposal.::
     >>> 'private' == portal.portal_workflow.getInfoFor(mentorinfo, 'review_state')
     True
     
+Check Permissions.::
+    >>> self.login('member')
+    >>> checkPerm(AccessContentsInformation, proposal1)
+    >>> checkPerm(AccessContentsInformation, proposerinfo)
+    >>> checkPerm(AccessContentsInformation, mentorinfo)
     
+    >>> self.login('student1')
+    >>> checkPerm(AccessContentsInformation, proposal1)
+    1
+    
+    >>> checkPerm(AccessContentsInformation, proposerinfo)
+    1
+    
+    >>> checkPerm(AccessContentsInformation, mentorinfo)
+    1
+
+Once submitted they can no longer modify it.::    
+    >>> from Products.CMFCore.permissions import ModifyPortalContent   
+    >>> checkPerm(ModifyPortalContent, proposal1)
+    
+    >>> self.login('faculty1')
+    >>> checkPerm(AccessContentsInformation, proposal1)
+    1
+    
+    >>> checkPerm(AccessContentsInformation, proposerinfo)
+    1
+    
+    >>> checkPerm(AccessContentsInformation, mentorinfo)
+    1
+
+Once submitted they can no longer modify it.::    
+    >>> checkPerm(ModifyPortalContent, proposal1)
+    
+Nor should they have permission to delegate (and thus see) reviewer assignments.
+They do have permission to delegate roles so that they can see the status bar.::
+    >>> from plone.app.workflow.permissions import DelegateRoles
+    >>> from plone.app.workflow.permissions import DelegateReviewerRole
+    >>> checkPerm(DelegateReviewerRole,proposal1)
+    >>> checkPerm(DelegateRoles,proposal1)
+    1
+   
+    >>> self.login('manager')
+    >>> checkPerm(AccessContentsInformation, proposal1)
+    1
+    
+    >>> checkPerm(AccessContentsInformation, proposerinfo)
+    1
+    
+    >>> checkPerm(AccessContentsInformation, mentorinfo)
+    1
+    
+    >>> checkPerm(DelegateReviewerRole,proposal1)
+    1
+    
+    >>> self.login('site manager')
+    >>> checkPerm(AccessContentsInformation, proposal1)
+    1
+    
+    >>> checkPerm(AccessContentsInformation, proposerinfo)
+    1
+    
+    >>> checkPerm(AccessContentsInformation, mentorinfo)
+    1
+    
+    >>> checkPerm(DelegateReviewerRole,proposal1)
+    1
+
+The site manager (or manager) can now assign reviewers using local roles.::
+    >>> user = portal.acl_users._doAddUser('reviewer1', 'secret', ['Member'], [])
+    >>> proposal1.manage_addLocalRoles('reviewer1',['Reviewer'])
+    >>> self.login('reviewer1')
+    >>> checkPerm(View, proposal1)
+    >>> checkPerm(AccessContentsInformation,proposal1)
+    >>> self.login('site manager')
+    >>> portal.portal_workflow.doActionFor(proposal1, 'to_under_review')
+    >>> 'under_review' == portal.portal_workflow.getInfoFor(proposal1, 'review_state')
+    True
+    
+    >>> self.login('reviewer1')
+    >>> checkPerm(View, proposerinfo)
+    >>> checkPerm(View, mentorinfo)
+    >>> checkPerm(View, proposal1)
+    1
+    
+    >>> checkPerm(AccessContentsInformation,proposal1)
+    1
+   
+The reviewer can create a review inside the proposal.  First check that such a
+beast and the appropriate workflow exists.::
+
