@@ -134,11 +134,12 @@ for this test.::
     
 Now verify that the Members cannot submit.::
     >>> from Products.CMFCore.WorkflowCore import WorkflowException
-    >>> self.assertRaises(WorkflowException,portal_workflow.doActionFor proposal1, 'submit')
+    >>> self.assertRaises(WorkflowException,portal_workflow.doActionFor, proposal1, 'submit')
     
 However they can "send to Advisor/Mentor for review and submission".::
     >>> portal.portal_workflow.doActionFor(proposal1, 'to_advisor_review')
     >>> 'advisor_review' == portal.portal_workflow.getInfoFor(proposal1, 'review_state')
+    True
 
 Even after sending it to the mentor changes are possible.  Test adding ID 
 information which is only visible to administrators, owners and editors 
@@ -187,7 +188,7 @@ Check that the permissions are correct.::
     >>> checkPerm(View, mentorinfo)
     1
     
-    >>> self.login('site manager)
+    >>> self.login('site manager')
     >>> checkPerm(View, proposerinfo)
     1
     
@@ -206,7 +207,7 @@ this.::
     
 Now, give faculty1 the local role of Editor for proposal1 and check that the
 permissions are correct.::
-    >>> proposal1.RoleManager.manage_addLocalRoles('faculty1',['Editor'])
+    >>> proposal1.manage_addLocalRoles('faculty1',['Editor'])
     >>> self.login('faculty1')
     >>> checkPerm(AccessContentsInformation, proposal1)
     1
