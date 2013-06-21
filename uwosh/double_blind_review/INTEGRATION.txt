@@ -196,14 +196,18 @@ Check that the permissions are correct.::
     1
 
 The advisor/mentor will usually be granted the local role of editor for the
-proposal, but anybody with editor access on the site should not be able to
-access the proposal, since it should not be inheriting permissions.  Test
-this.::
+proposal, but anybody with editor access on the site can also
+access the proposal. Test this.::
     >>> user = portal.acl_users._doAddUser('editor', 'secret', ['Editor'], [])
     >>> self.login('editor')
     >>> checkPerm(View, proposerinfo)
+    1
+    
     >>> checkPerm(View, mentorinfo)
+    1
+    
     >>> checkPerm(View, proposal1)
+    1
     
 Now, give faculty1 the local role of Editor for proposal1 and check that the
 permissions are correct.::
