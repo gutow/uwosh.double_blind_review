@@ -134,7 +134,7 @@ for this test.::
     
 Now verify that the Members cannot submit.::
     >>> from Products.CMFCore.WorkflowCore import WorkflowException
-    >>> self.assertRaises(WorkflowException,portal_workflow.doActionFor, proposal1, 'submit')
+    >>> self.assertRaises(WorkflowException,portal.portal_workflow.doActionFor, proposal1, 'submit')
     
 However they can "send to Advisor/Mentor for review and submission".::
     >>> portal.portal_workflow.doActionFor(proposal1, 'to_advisor_review')
