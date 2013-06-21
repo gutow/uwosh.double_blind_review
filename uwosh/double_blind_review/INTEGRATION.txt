@@ -90,19 +90,14 @@ and 'site manager' can create one of these drop boxes.::
     ...        user = portal.acl_users._doAddUser('user', 'secret', [role], [])
     ...        # we are looking for a different result for managers.
     ...        self.login('user')
-    ...        #what do we check the permission against portal does not work?
-    ...        #portal.invokeFactory('proposal_drop_box', 'test-drop-box')
-    ...        #appears to be an 'AccessControl_Unauthorized' or 'Unauthorized' exception?
     ...        self.assertRaises(AccessControl_Unauthorized,portal.invokeFactory,'proposal_drop_box', 'test-drop-box')
 
 Now check our managers::
     >>> self.login('manager')
-    >>> #self.setRole('manager')
     >>> portal.invokeFactory('proposal_drop_box', 'test-manager-drop-box')
     'test-manager-drop-box'
     
     >>> self.login('site manager')
-    >>> #self.setRole('site manager')
     >>> portal.invokeFactory('proposal_drop_box', 'test-site-manager-drop-box')
     'test-site-manager-drop-box'
     
@@ -137,5 +132,100 @@ for this test.::
     >>> 'private' == portal.portal_workflow.getInfoFor(proposal1, 'review_state')
     True
     
+Now verify that the Members cannot submit.::
+    >>> from Products.CMFCore.WorkflowCore import WorkflowException
+    >>> self.assertRaises(WorkflowException,portal_workflow.doActionFor proposal1, 'submit')
+    
+However they can "send to Advisor/Mentor for review and submission".::
+    >>> portal.portal_workflow.doActionFor(proposal1, 'to_advisor_review')
+    >>> 'advisor_review' == portal.portal_workflow.getInfoFor(proposal1, 'review_state')
 
+Even after sending it to the mentor changes are possible.  Test adding ID 
+information which is only visible to administrators, owners and editors 
+(advisors/mentors).  First check if the proper types and workflows are available.::
+    >>> 'proposer' in portal.portal_types
+    True
+    
+    >>> 'mentor' in portal.portal_types
+    True
+    
+    >>> 'id_info_workflow' in workflows
+    True
+    
+Add proposer and mentor information.::
+    >>> proposal1.invokeFactory('proposer','test-proposer')
+    'test-proposer'
+    
+    >>> proposal1.invokeFactory('mentor','test-mentor')
+    'test-mentor'
+    
+Verify their review states.::    
+    >>> proposerinfo = proposal1['test-proposer']
+    >>> 'private' == portal.portal_workflow.getInfoFor(proposerinfo,'review_state')
+    True
+    
+    >>> mentorinfo = proposal1['test-mentor']
+    >>> 'private' == portal.portal_workflow.getInfoFor(mentorinfo, 'review_state')
+    True
+    
+Check that the permissions are correct.::
+    >>> from Products.CMFCore.permissions import View   
+    >>> checkPerm(View, proposerinfo)
+    1
+    
+    >>> checkPerm(View, mentorinfo)
+    1
+    
+    >>> self.login('member')
+    >>> checkPerm(View, proposerinfo)
+    >>> checkPerm(View, mentorinfo)
+    
+    >>> self.login('manager')
+    >>> checkPerm(View, proposerinfo)
+    1
+    
+    >>> checkPerm(View, mentorinfo)
+    1
+    
+    >>> self.login('site manager)
+    >>> checkPerm(View, proposerinfo)
+    1
+    
+    >>> checkPerm(View, mentorinfo)
+    1
 
+The advisor/mentor will usually be granted the local role of editor for the
+proposal, but anybody with editor access on the site should not be able to
+access the proposal, since it should not be inheriting permissions.  Test
+this.::
+    >>> user = portal.acl_users._doAddUser('editor', 'secret', ['Editor'], [])
+    >>> self.login('editor')
+    >>> checkPerm(View, proposerinfo)
+    >>> checkPerm(View, mentorinfo)
+    >>> checkPerm(View, proposal1)
+    
+Now, give faculty1 the local role of Editor for proposal1 and check that the
+permissions are correct.::
+    >>> proposal1.RoleManager.manage_addLocalRoles('faculty1',['Editor'])
+    >>> self.login('faculty1')
+    >>> checkPerm(AccessContentsInformation, proposal1)
+    1
+    
+    >>> checkPerm(AccessContentsInformation, proposerinfo)
+    1
+    
+    >>> checkPerm(AccessContentsInformation, mentorinfo)
+    1
+    
+After editting they submit the proposal.::
+    >>> portal.portal_workflow.doActionFor(proposal1, 'submit')
+    >>> 'submitted' == portal.portal_workflow.getInfoFor(proposal1, 'review_state')
+    True
+    
+    >>> 'private' == portal.portal_workflow.getInfoFor(proposerinfo,'review_state')
+    True
+
+    >>> 'private' == portal.portal_workflow.getInfoFor(mentorinfo, 'review_state')
+    True
+    
+    
