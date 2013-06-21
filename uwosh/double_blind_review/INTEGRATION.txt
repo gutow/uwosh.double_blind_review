@@ -83,7 +83,8 @@ the workflow 'proposal_folder_workflow'exists.::
     
 Now iterate through all the roles on the portal and make sure that only 'manager'
 and 'site manager' can create one of these drop boxes.::
-    >>> from Products.CMFCore.WorkflowCore import WorkflowException
+    >>> from Products.CMFCore.exceptions import AccessControl_Unauthorized
+
     >>> for role in roles:
     ...    if role != 'manager'and role !='site manager' :
     ...        user = portal.acl_users._doAddUser('user', 'secret', [role], [])
@@ -92,7 +93,7 @@ and 'site manager' can create one of these drop boxes.::
     ...        #what do we check the permission against portal does not work?
     ...        #portal.invokeFactory('proposal_drop_box', 'test-drop-box')
     ...        #appears to be an 'AccessControl_Unauthorized' or 'Unauthorized' exception?
-    ...        self.assertRaises(WorkflowException,portal.invokeFactory,'proposal_drop_box', 'test-drop-box')
+    ...        self.assertRaises(AccessControl_Unauthorized,portal.invokeFactory,'proposal_drop_box', 'test-drop-box')
 
 Now check our managers::
     >>> self.login('manager')
