@@ -92,7 +92,7 @@ and 'site manager' can create one of these drop boxes.::
     ...        #what do we check the permission against portal does not work?
     ...        #portal.invokeFactory('proposal_drop_box', 'test-drop-box')
     ...        #appears to be an 'AccessControl_Unauthorized' or 'Unauthorized' exception?
-    ...        self.assertRaises(AccessControl_Unauthorized,portal.invokeFactory,'proposal_drop_box', 'test-drop-box')
+    ...        self.assertRaises(WorkflowException,portal.invokeFactory,'proposal_drop_box', 'test-drop-box')
 
 Now check our managers::
     >>> self.login('manager')
