@@ -262,9 +262,6 @@ Once submitted they can no longer modify it.::
     
     >>> checkPerm(AccessContentsInformation, mentorinfo)
     1
-
-Once submitted they can no longer modify it.::    
-    >>> checkPerm(ModifyPortalContent, proposal1)
     
 Nor should they have permission to delegate (and thus see) reviewer assignments.
 They do have permission to delegate roles so that they can see the status bar.::
@@ -300,15 +297,40 @@ They do have permission to delegate roles so that they can see the status bar.::
     >>> checkPerm(DelegateReviewerRole,proposal1)
     1
 
+When the proposal submission deadline is reached the site manager (or manager)
+should close the proposal drop box.::
+    >>> portal.portal_workflow.doActionFor(working_drop, 'close')
+    >>> 'closed' == portal.portal_workflow.getInfoFor(working_drop, 'review_state')
+    True
+    
+It should not be possible for a proposer to create a new proposal in a closed 
+drop box.::
+    >>> self.login('student1')
+    >>> from Products.CMFCore.permissions import AddPortalContent
+    >>> checkPerm(AddPortalContent, working_drop)
+
 The site manager (or manager) can now assign reviewers using local roles.::
     >>> user = portal.acl_users._doAddUser('reviewer1', 'secret', ['Member'], [])
     >>> proposal1.manage_addLocalRoles('reviewer1',['Reviewer'])
     >>> self.login('reviewer1')
     >>> checkPerm(View, proposal1)
     >>> checkPerm(AccessContentsInformation,proposal1)
+    
+Once reviewer(s) is(are) assigned the site manager (or manager) transitions the
+proposal to "under_review" status.  Normally this would probably be done to all
+proposals within a proposal drop box at the same time by transitioning the drop
+box and checking the "apply to contents" choice in the advanced options.:: 
     >>> self.login('site manager')
+    >>> portal.portal_workflow.doActionFor(working_drop, 'to_under_review')
+    >>> 'under_review' == portal.portal_workflow.getInfoFor(working_drop, 'review_state')
+    True
+    
     >>> portal.portal_workflow.doActionFor(proposal1, 'to_under_review')
     >>> 'under_review' == portal.portal_workflow.getInfoFor(proposal1, 'review_state')
+    True
+    
+    >>> portal.portal_workflow.doActionFor(working_drop, 'to_under_review')
+    >>> 'under_review' == portal.portal_workflow.getInfoFor(working_drop, 'review_state')
     True
     
     >>> self.login('reviewer1')
@@ -319,7 +341,59 @@ The site manager (or manager) can now assign reviewers using local roles.::
     
     >>> checkPerm(AccessContentsInformation,proposal1)
     1
-   
+
 The reviewer can create a review inside the proposal.  First check that such a
 beast and the appropriate workflow exists.::
-
+    >>> 'mock_review' in portal.portal_types
+    True
+    
+    >>> 'anonymous_peer_review_workflow' in workflows
+    True
+    
+    >>> proposal1.invokeFactory('mock_review','test-review')
+    'test-review'
+    
+    >>> review1 = proposal1['test-review']
+    >>> 'private' = portal.portal_workflow.getInfoFor(review1, 'review_state')
+    True
+    
+Now check that the permissions are such that the proposers cannot see their own
+proposal once it is in the review process.  This is to avoid proposers seeing
+tentative decisions or incomplete reviews.::
+    >>> self.login('student1')
+    >>> checkPerm(View, proposal1)
+    >>> checkPerm(AccessContentsInformation,proposal1)
+    >>> checkPerm(AccessContentsInformation,review1)
+    >>> self.login('faculty1')
+    >>> checkPerm(View, proposal1)
+    >>> checkPerm(AccessContentsInformation,proposal1)
+    >>> checkPerm(AccessContentsInformation,review1)
+    
+When the reviewer finishes the review they submit it.  The reviewer should no
+longer be able to change it and the proposers should still not be able to see
+it.::
+    >>> self.login('reviewer1')
+    >>> portal.portal_workflow.doActionFor(review1, 'submit')
+    >>> 'submitted' == portal.portal_workflow.getInfoFor(review1, 'review_state')
+    True
+    
+    >>> checkPerm(ModifyPortalContent, review1)
+    >>> checkPerm(View, review1)
+    1
+    
+    >>> self.login('student1')
+    >>> checkPerm(AccessContentsInformation,review1)
+    >>> self.login('faculty1')
+    >>> checkPerm(AccessContentsInformation,review1)
+    
+Just to be careful.  Make sure random loggged in users cannot see it either.::
+    >>> self.login('member')
+    >>> checkPerm(View, review1)
+    >>> checkPerm(AccessContentsInformation,review1)
+    
+When all the reviews are done the site manager (or manager) changes the proposal
+and its contents to the under_panel_review state.  Normally this would probably
+be done by transitioning the folder for all proposals of the same kind and 
+checking the "apply to contents" choice in the advanced options.::
+    
+    
