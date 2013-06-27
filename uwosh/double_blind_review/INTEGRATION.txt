@@ -29,8 +29,17 @@ In an integration test, here's some of the globals you have to work with::
     >>> app
     <Application at >
 
-uwosh.double_blind_review integration testing.  I have chosen to impliment all
+uwosh.double_blind_review integration testing.  I have chosen to implement all
 the tests as doctests in order to provide some explanation of the functionality.
+
+TODO:  Things that could use testing but are less critical:  backward
+transitions, complete set of permissions for site managers and managers under
+each state (presently only those critical to the double blind workflow functions
+are tested).
+
+NOTE:  The overide templates for history and byline views must
+be tested manually in the user interface, since they could potentially be 
+overridden by some other product that is installed.
 
 This product installs a folderish object loaded with instructions at the root 
 level of the portal which is only available to those with roles of "Site 
@@ -328,11 +337,7 @@ box and checking the "apply to contents" choice in the advanced options.::
     >>> portal.portal_workflow.doActionFor(proposal1, 'to_under_review')
     >>> 'under_review' == portal.portal_workflow.getInfoFor(proposal1, 'review_state')
     True
-    
-    >>> portal.portal_workflow.doActionFor(working_drop, 'to_under_review')
-    >>> 'under_review' == portal.portal_workflow.getInfoFor(working_drop, 'review_state')
-    True
-    
+        
     >>> self.login('reviewer1')
     >>> checkPerm(View, proposerinfo)
     >>> checkPerm(View, mentorinfo)
@@ -386,7 +391,7 @@ it.::
     >>> self.login('faculty1')
     >>> checkPerm(AccessContentsInformation,review1)
     
-Just to be careful.  Make sure random loggged in users cannot see it either.::
+Just to be careful.  Make sure random logged in users cannot see it either.::
     >>> self.login('member')
     >>> checkPerm(View, review1)
     >>> checkPerm(AccessContentsInformation,review1)
@@ -395,5 +400,62 @@ When all the reviews are done the site manager (or manager) changes the proposal
 and its contents to the under_panel_review state.  Normally this would probably
 be done by transitioning the folder for all proposals of the same kind and 
 checking the "apply to contents" choice in the advanced options.::
+    >>> self.login('site manager')
+    >>> portal.portal_workflow.doActionFor(working_drop, 'to_panel_review')
+    >>> 'panel_review' == portal.portal_workflow.getInfoFor(working_drop, 'review_state')
+    True
     
+    >>> portal.portal_workflow.doActionFor(proposal1, 'to_panel_review')
+    >>> 'panel_review' == portal.portal_workflow.getInfoFor(proposal1, 'review_state')
+    True
     
+    >>> portal.portal_workflow.doActionFor(review1, 'to_panel_review')
+    >>> 'panel_review' == portal.portal_workflow.getInfoFor(review1, 'review_state')
+    True
+    
+In this state only panelists and site managers (or managers) should be able to
+see proposals and reviews. Note that panelists cannot see anything with an
+ID_info workflow unless the managers explicitely share it with them.::
+    >>> checkPerm(View, proposal1)
+    1
+    >>> checkPerm(AccessContentsInformation,proposal1)
+    1
+    >>> checkPerm(AccessContentsInformation,review1)
+    1
+    >>> checkPerm(View, review1)
+    1
+    >>> checkPerm(DelegateRoles,proposal1)
+    1
+
+    >>> user = portal.acl_users._doAddUser('panelist1', 'secret', ['Panelist'], [])
+    >>> self.login('panelist1')
+    >>> checkPerm(View, proposal1)
+    1
+    >>> checkPerm(AccessContentsInformation,proposal1)
+    1
+    >>> checkPerm(AccessContentsInformation,review1)
+    1
+    >>> checkPerm(View, review1)
+    1
+    >>> checkPerm(DelegateRoles,proposal1)
+    1
+
+    >>> self.login('student1')
+    >>> checkPerm(View, proposal1)
+    >>> checkPerm(AccessContentsInformation,proposal1)
+    >>> checkPerm(AccessContentsInformation,review1)
+    >>> checkPerm(View, review1)
+    >>> checkPerm(DelegateRoles,proposal1)
+    
+    >>> self.login('reviewer1')
+    >>> checkPerm(View, proposal1)
+    >>> checkPerm(AccessContentsInformation,proposal1)
+    >>> checkPerm(AccessContentsInformation,review1)
+    >>> checkPerm(View, review1)
+    >>> checkPerm(DelegateRoles,proposal1)
+    
+When a decision is made by the panel the site manager (or manager) sets the
+proposal and its contents to a state corresponding to the decision.  There are
+two versions of each of these:  an invisible state that can only be seen by the
+managers and panelists and a visible version that is visible to proposers and
+reviewers as well.
