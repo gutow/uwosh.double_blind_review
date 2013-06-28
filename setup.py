@@ -5,7 +5,7 @@ version = '0.9'
 
 setup(name='uwosh.double_blind_review',
       version=version,
-      description="Double Blind Review Workflows.",
+      description="Double Blind Review Workflows",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from

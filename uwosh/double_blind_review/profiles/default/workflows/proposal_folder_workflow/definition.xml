@@ -317,6 +317,4 @@
   <guard>
   </guard>
  </variable>
- <script script_id="contents_to_visible" type="Script (Python)" filename="workflows/proposal_folder_workflow/scripts/contents_to_visible.py" module="" function=""/>
- <script script_id="make_transition" type="Script (Python)" filename="workflows/proposal_folder_workflow/scripts/make_transition.py" module="" function=""/>
 </dc-workflow>
