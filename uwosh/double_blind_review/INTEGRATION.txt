@@ -364,12 +364,15 @@ beast and the appropriate workflow exists.::
     
 Now check that the permissions are such that the proposers cannot see their own
 proposal once it is in the review process.  This is to avoid proposers seeing
-tentative decisions or incomplete reviews.::
+tentative decisions or incomplete reviews. You will notice that objects created
+inside owned objects seem to treat the container owner and the owner as owners::
     >>> self.login('student1')
     >>> checkPerm(View, proposal1)
     >>> checkPerm(View,review1)
+    1
     >>> checkPerm(AccessContentsInformation,proposal1)
     >>> checkPerm(AccessContentsInformation,review1)
+    1
     >>> self.login('faculty1')
     >>> checkPerm(View, proposal1)
     >>> checkPerm(View,review1)
@@ -389,8 +392,13 @@ it.::
     1
     
     >>> self.login('student1')
-    >>> checkPerm(AccessContentsInformation,review1)
+    >>> checkPerm(View, proposal1)
     >>> checkPerm(View,review1)
+    1
+    >>> checkPerm(AccessContentsInformation,proposal1)
+    >>> checkPerm(AccessContentsInformation,review1)
+    1
+
     >>> self.login('faculty1')
     >>> checkPerm(AccessContentsInformation,review1)
     >>> checkPerm(View,review1)
@@ -633,6 +641,7 @@ permissions for both the proposal and reviews.::
     >>> checkPerm(View, proposal1)
     1
     >>> checkPerm(AccessContentsInformation,proposal1)
+    1
     >>> checkPerm(AccessContentsInformation,review1)
     >>> checkPerm(View, review1)
     1
@@ -642,6 +651,7 @@ permissions for both the proposal and reviews.::
     >>> checkPerm(View, proposal1)
     1
     >>> checkPerm(AccessContentsInformation,proposal1)
+    1
     >>> checkPerm(AccessContentsInformation,review1)
     >>> checkPerm(View, review1)
     1
