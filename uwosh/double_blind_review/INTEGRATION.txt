@@ -367,10 +367,12 @@ proposal once it is in the review process.  This is to avoid proposers seeing
 tentative decisions or incomplete reviews.::
     >>> self.login('student1')
     >>> checkPerm(View, proposal1)
+    >>> checkPerm(View,review1)
     >>> checkPerm(AccessContentsInformation,proposal1)
     >>> checkPerm(AccessContentsInformation,review1)
     >>> self.login('faculty1')
     >>> checkPerm(View, proposal1)
+    >>> checkPerm(View,review1)
     >>> checkPerm(AccessContentsInformation,proposal1)
     >>> checkPerm(AccessContentsInformation,review1)
     
@@ -388,8 +390,10 @@ it.::
     
     >>> self.login('student1')
     >>> checkPerm(AccessContentsInformation,review1)
+    >>> checkPerm(View,review1)
     >>> self.login('faculty1')
     >>> checkPerm(AccessContentsInformation,review1)
+    >>> checkPerm(View,review1)
     
 Just to be careful.  Make sure random logged in users cannot see it either.::
     >>> self.login('member')
