@@ -359,7 +359,7 @@ beast and the appropriate workflow exists.::
     'test-review'
     
     >>> review1 = proposal1['test-review']
-    >>> 'private' = portal.portal_workflow.getInfoFor(review1, 'review_state')
+    >>> 'private' == portal.portal_workflow.getInfoFor(review1, 'review_state')
     True
     
 Now check that the permissions are such that the proposers cannot see their own
@@ -633,7 +633,7 @@ permissions for both the proposal and reviews.::
     >>> checkPerm(View, review1)
     1
     >>> checkPerm(DelegateRoles,proposal1)
-    
+    1
     >>> self.login('faculty1')
     >>> checkPerm(View, proposal1)
     1
@@ -642,7 +642,7 @@ permissions for both the proposal and reviews.::
     >>> checkPerm(View, review1)
     1
     >>> checkPerm(DelegateRoles,proposal1)
-
+    1
     
     >>> self.login('reviewer1')
     >>> checkPerm(View, proposal1)
@@ -652,7 +652,8 @@ permissions for both the proposal and reviews.::
     >>> checkPerm(View, review1)
     1
     >>> checkPerm(DelegateRoles,proposal1)    
-
+    1
+    
 Revert and check the other possibilities.::
     >>> self.login('site manager')
     >>> portal.portal_workflow.doActionFor(working_drop, 'to_panel_review')
@@ -692,6 +693,7 @@ Revert and check the other possibilities.::
     >>> checkPerm(View, review1)
     1
     >>> checkPerm(DelegateRoles,proposal1)
+    1
     
     >>> self.login('faculty1')
     >>> checkPerm(View, proposal1)
@@ -701,7 +703,7 @@ Revert and check the other possibilities.::
     >>> checkPerm(View, review1)
     1
     >>> checkPerm(DelegateRoles,proposal1)
-
+    1
     
     >>> self.login('reviewer1')
     >>> checkPerm(View, proposal1)
@@ -711,6 +713,7 @@ Revert and check the other possibilities.::
     >>> checkPerm(View, review1)
     1
     >>> checkPerm(DelegateRoles,proposal1)
+    1
     
     >>> self.login('site manager')
     >>> portal.portal_workflow.doActionFor(working_drop, 'to_panel_review')
@@ -750,6 +753,7 @@ Revert and check the other possibilities.::
     >>> checkPerm(View, review1)
     1
     >>> checkPerm(DelegateRoles,proposal1)
+    1
     
     >>> self.login('faculty1')
     >>> checkPerm(View, proposal1)
@@ -759,7 +763,7 @@ Revert and check the other possibilities.::
     >>> checkPerm(View, review1)
     1
     >>> checkPerm(DelegateRoles,proposal1)
-
+    1
     
     >>> self.login('reviewer1')
     >>> checkPerm(View, proposal1)
@@ -769,3 +773,4 @@ Revert and check the other possibilities.::
     >>> checkPerm(View, review1)
     1
     >>> checkPerm(DelegateRoles,proposal1) 
+    1
