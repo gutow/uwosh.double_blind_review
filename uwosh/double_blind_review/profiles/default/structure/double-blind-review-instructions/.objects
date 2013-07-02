@@ -1,1 +1,5 @@
-double-blind-review-overview,making-a-new-proposal-drop-box,making-a-new-proposal-content-type,making-a-new-id-containing-content-type,making-a-new-review-content-type
+double-blind-review-overview,double_blind_review_product_overview
+making-a-new-proposal-drop-box,making_a_proposal_drop_box_content_type
+making-a-new-proposal-content-type,making_a_proposal_content_type
+making-a-new-id-containing-content-type,making_an_id_containing_content_type
+making-a-new-review-content-type,making_a_review_content_type
