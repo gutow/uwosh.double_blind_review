@@ -26,9 +26,9 @@
        in Plone -->
   <genericsetup:registerProfile
       name="default"
-      title="Double Blind Review Workflows."
+      title="Double Blind Review Workflows"
       directory="profiles/default"
-      description="Extension profile for Double Blind Review Workflows."
+      description="Provides workflows and types for double blind review."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
@@ -39,5 +39,5 @@
         interface="uwosh.double_blind_review.interfaces.IDoubleBlind"
         type="zope.publisher.interfaces.browser.IBrowserSkinType"
         />
-    <browser:jbot         directory="static/overrides" />
+    <browser:jbot directory="static/overrides" />
 </configure>
