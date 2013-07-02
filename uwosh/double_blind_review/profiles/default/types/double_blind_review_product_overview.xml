@@ -29,9 +29,9 @@
  <property name="schema"></property>
  <property
     name="model_source">&lt;model xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
-    &lt;schema&gt;
-      &lt;field name="content" type="plone.app.textfield.RichText"&gt;
-        &lt;default&gt;&amp;lt;h2&amp;gt;Target Uses&amp;lt;/h2&amp;gt;&amp;#13;
+  &lt;schema&gt;
+  &lt;field name="content" type="plone.app.textfield.RichText"&gt;
+  &lt;default&gt;&amp;lt;h2&amp;gt;Target Uses&amp;lt;/h2&amp;gt;&amp;#13;
   &amp;lt;p&amp;gt;This product was designed to allow double blind review (neither author nor reviewer knows who the other is) of content posted to the web site. In particular it was designed for review of grant proposals and written student work. The idea was to provide this facility in as "plonish" a way as possible, so that it could be used with almost any content type one could devise. In particular, I wanted to create something that non-programmers could use for any kind of submission they could build through the web using Dexterity. The main impetus for this was that I foresee passing responsibility for my institution's internal grant processing onto someone else in the near future.- &amp;lt;em&amp;gt;May 16, 2013 - Jonathan Gutow, University of Wisconsin Oshkosh, Oshkosh, WI, USA&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;&amp;#13;
   &amp;lt;h2&amp;gt;Administration Overview&amp;lt;/h2&amp;gt;&amp;#13;
   &amp;lt;p&amp;gt;For each type of proposal or proposal cycle the administrator creates a Proposal Drop Box with instructions in it for what to submit and when.&amp;#160; At the end of the submission period the administrator stops accepting submissions by changing the workflow state.&amp;#160; The administrator then assigns reviewers to the proposals and changes the state of the Proposal Drop Box and its contents to "under review".&amp;#160; Content rules could be used to automatically notify the assigned reviewers by e-mail that the proposals are ready for review, but this is not set up by default.&amp;#160; Once the reviewers are done the proposals are passed on to the panel&amp;#160;(another state change) for a final decision, which is recorded by changing the state of the proposal, as well.&amp;#160; When everything is complete the drop box state is changed to cycle complete and the decisions and reviews are made visible to the proposers.&amp;lt;/p&amp;gt;&amp;#13;
@@ -81,10 +81,10 @@
   &amp;lt;li&amp;gt;Proposer: this is an example of the content type I use to contain information about the proposer that would compromise the anonymity of the proposer. It follows the ID info Workflow, making it invisible to anyone but the proposer and authenticated users with the role of Administrator.&amp;lt;/li&amp;gt;&amp;#13;
   &amp;lt;li&amp;gt;Mentor: this is an example of the content type I use to contain information about the faculty mentor that would compromise the anonymity of the proposing team. It follows the ID info Workflow, making it invisible to anyone but the proposer and authenticated users with the role of Administrator.&amp;lt;/li&amp;gt;&amp;#13;
   &amp;lt;/ol&amp;gt;&lt;/default&gt;
-        &lt;description&gt;Put your Rich Text content here.&lt;/description&gt;
-        &lt;title&gt;----&lt;/title&gt;
-      &lt;/field&gt;
-    &lt;/schema&gt;
+  &lt;description&gt;Put your Rich Text content here.&lt;/description&gt;
+  &lt;title&gt;----&lt;/title&gt;
+  &lt;/field&gt;
+  &lt;/schema&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>

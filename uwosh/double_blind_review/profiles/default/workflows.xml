@@ -35,7 +35,22 @@
   <type type_id="double_blind_review_product_overview">
    <bound-workflow workflow_id="intructor_only_workflow"/>
   </type>
+  <type type_id="drop_box_old_folder_style">
+   <bound-workflow workflow_id="proposal_folder_workflow"/>
+  </type>
   <type type_id="folder_visible_only_to_administrators">
+   <bound-workflow workflow_id="intructor_only_workflow"/>
+  </type>
+  <type type_id="making_a_proposal_content_type">
+   <bound-workflow workflow_id="intructor_only_workflow"/>
+  </type>
+  <type type_id="making_a_proposal_drop_box_content_type">
+   <bound-workflow workflow_id="intructor_only_workflow"/>
+  </type>
+  <type type_id="making_a_review_content_type">
+   <bound-workflow workflow_id="intructor_only_workflow"/>
+  </type>
+  <type type_id="making_an_id_containing_content_type">
    <bound-workflow workflow_id="intructor_only_workflow"/>
   </type>
   <type type_id="mentor">
@@ -46,6 +61,9 @@
   </type>
   <type type_id="mock_review">
    <bound-workflow workflow_id="anonymous_peer_review_workflow"/>
+  </type>
+  <type type_id="new_proposer">
+   <bound-workflow workflow_id="id_info_workflow"/>
   </type>
   <type type_id="proposal_drop_box">
    <bound-workflow workflow_id="proposal_folder_workflow"/>

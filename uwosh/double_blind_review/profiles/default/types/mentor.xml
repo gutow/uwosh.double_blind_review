@@ -3,7 +3,8 @@
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Mentor</property>
  <property name="description" i18n:translate="">Mentor Contact Info</property>
- <property name="icon_expr">string:${portal_url}/++resource++uwosh.double_blind_review/mentor_icon.png</property>
+ <property
+    name="icon_expr">string:${portal_url}/++resource++uwosh.double_blind_review/mentor_icon.png</property>
  <property name="factory">mentor</property>
  <property name="add_view_expr">string:${folder_url}/++add++mentor</property>
  <property name="link_target"></property>
@@ -24,27 +25,32 @@
  </property>
  <property name="schema"></property>
  <property
-    name="model_source">&lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+    name="model_source">&lt;model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
     &lt;schema&gt;
       &lt;field name="first_name" type="zope.schema.TextLine"&gt;
-        &lt;description /&gt;
+        &lt;description/&gt;
         &lt;title&gt;First Name&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name="title" type="zope.schema.TextLine"&gt;
-        &lt;description /&gt;
+        &lt;description/&gt;
         &lt;title&gt;Last Name&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name="e_mail" type="zope.schema.TextLine"&gt;
-        &lt;description /&gt;
+        &lt;description/&gt;
         &lt;title&gt;E-mail&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name="department" type="zope.schema.TextLine"&gt;
         &lt;description&gt;Home department&lt;/description&gt;
         &lt;title&gt;Department&lt;/title&gt;
       &lt;/field&gt;
+      &lt;field name="campus_phone" type="zope.schema.TextLine"&gt;
+        &lt;description&gt;Please provide your campus phone number.&lt;/description&gt;
+        &lt;title&gt;Campus phone&lt;/title&gt;
+      &lt;/field&gt;
     &lt;/schema&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
+ <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
  <alias from="edit" to="@@edit"/>
  <alias from="sharing" to="@@sharing"/>

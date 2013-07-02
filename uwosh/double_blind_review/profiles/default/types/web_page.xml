@@ -28,12 +28,12 @@
  <property name="schema"></property>
  <property
     name="model_source">&lt;model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
-    &lt;schema&gt;
-      &lt;field name="content" type="plone.app.textfield.RichText"&gt;
-        &lt;description&gt;Put your Rich Text content here.&lt;/description&gt;
-        &lt;title&gt;----&lt;/title&gt;
-      &lt;/field&gt;
-    &lt;/schema&gt;
+  &lt;schema&gt;
+  &lt;field name="content" type="plone.app.textfield.RichText"&gt;
+  &lt;description&gt;Put your Rich Text content here.&lt;/description&gt;
+  &lt;title&gt;----&lt;/title&gt;
+  &lt;/field&gt;
+  &lt;/schema&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>

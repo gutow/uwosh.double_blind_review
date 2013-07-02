@@ -30,7 +30,7 @@
  </property>
  <property name="schema"></property>
  <property
-    name="model_source">&lt;model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+    name="model_source">&lt;model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
     &lt;schema&gt;
       &lt;field name="title" type="zope.schema.TextLine"&gt;
         &lt;default&gt;Please use an informative title here.&lt;/default&gt;
@@ -45,13 +45,13 @@
       &lt;field name="instructions" type="plone.app.textfield.RichText"&gt;
         &lt;default&gt;&amp;lt;ol&amp;gt;&amp;#13;
   &amp;lt;li&amp;gt;After filling in your title and abstract above. &amp;#160;Save this proposal container using the "Save" button below. &amp;#160;If you made a mistake you can always go back and correct it in the "Edit" tab above. &amp;#160;Then follow the rest of these instructions.&amp;lt;/li&amp;gt;&amp;#13;
-  &amp;lt;li&amp;gt;For each student proposer (maximum of 2) add proposer information by selecting "Proposer" from the "Add New..." menu in the green bar above.&amp;lt;/li&amp;gt;&amp;#13;
-  &amp;lt;li&amp;gt;For each faculty or staff mentor add the mentor information by selecting "Mentor" from the "Add New..." menu in the green bar above.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;For each student proposer (maximum of 2) add proposer information by selecting "Proposer" from the "Add New..." menu in the bar above.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;For each faculty or staff mentor add the mentor information by selecting "Mentor" from the "Add New..." menu in the bar above.&amp;lt;/li&amp;gt;&amp;#13;
   &amp;lt;li&amp;gt;Click on the "Edit" tab above and upload the proposal document in .pdf format by clicking on the "Upload" button.&amp;lt;/li&amp;gt;&amp;#13;
   &amp;lt;li&amp;gt;Check that everything is correct.&amp;lt;/li&amp;gt;&amp;#13;
-  &amp;lt;li&amp;gt;Click on the "Sharing" tab in the green bar and share the proposal with your primary mentor by giving them "edit" permission.&amp;lt;/li&amp;gt;&amp;#13;
-  &amp;lt;li&amp;gt;Change state to "Send to Advisor for approval and submission" using the State menu in the green bar. &amp;#160;You and the mentor will still be able to replace the document and edit the parts of the proposal until the mentor submits.&amp;lt;/li&amp;gt;&amp;#13;
-  &amp;lt;li&amp;gt;Once everything is really, really ready (see final checklist), the mentor should select "Submit" from the state menu in the green bar (note only mentors can submit).&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Click on the "Sharing" tab in the bar and share the proposal with your primary mentor by giving them "edit" permission.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Change state to "Send to Advisor for approval and submission" using the State menu in the bar above. &amp;#160;You and the mentor will still be able to replace the document and edit the parts of the proposal until the mentor submits.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Once everything is really, really ready (see final checklist), the mentor should select "Submit" from the state menu in the bar (note only mentors can submit).&amp;lt;/li&amp;gt;&amp;#13;
   &amp;lt;/ol&amp;gt;&lt;/default&gt;
         &lt;description&gt;DO NOT EDIT!&lt;/description&gt;
         &lt;title&gt;Instructions&lt;/title&gt;

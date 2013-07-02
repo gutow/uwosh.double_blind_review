@@ -4,7 +4,8 @@
  <property name="title" i18n:translate="">Proposer</property>
  <property name="description"
     i18n:translate="">Proposer Contact Info</property>
- <property name="icon_expr">string:${portal_url}/++resource++uwosh.double_blind_review/proposer_icon.png</property>
+ <property
+    name="icon_expr">string:${portal_url}/++resource++uwosh.double_blind_review/proposer_icon.png</property>
  <property name="factory">proposer</property>
  <property
     name="add_view_expr">string:${folder_url}/++add++proposer</property>
@@ -26,44 +27,49 @@
  </property>
  <property name="schema"></property>
  <property
-    name="model_source">&lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+    name="model_source">&lt;model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
     &lt;schema&gt;
       &lt;field name="first_name" type="zope.schema.TextLine"&gt;
-        &lt;description /&gt;
+        &lt;description/&gt;
         &lt;title&gt;First Name&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name="title" type="zope.schema.TextLine"&gt;
-        &lt;description /&gt;
+        &lt;description/&gt;
         &lt;title&gt;Last Name&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name="e_mail" type="zope.schema.TextLine"&gt;
-        &lt;description /&gt;
+        &lt;description/&gt;
         &lt;title&gt;E-mail&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name="address_line_1" type="zope.schema.TextLine"&gt;
-        &lt;description /&gt;
+        &lt;description/&gt;
         &lt;title&gt;Address Line 1&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name="address_line_2" type="zope.schema.TextLine"&gt;
-        &lt;description /&gt;
+        &lt;description/&gt;
         &lt;required&gt;False&lt;/required&gt;
         &lt;title&gt;Address Line 2&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name="city" type="zope.schema.TextLine"&gt;
-        &lt;description /&gt;
+        &lt;description/&gt;
         &lt;title&gt;City&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name="state" type="zope.schema.TextLine"&gt;
-        &lt;description /&gt;
+        &lt;description/&gt;
         &lt;title&gt;State&lt;/title&gt;
       &lt;/field&gt;
       &lt;field name="zip_code" type="zope.schema.TextLine"&gt;
-        &lt;description /&gt;
+        &lt;description/&gt;
         &lt;title&gt;Zip Code&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="phone" type="zope.schema.TextLine"&gt;
+        &lt;description&gt;Please provide a phone number where we can contact you.&lt;/description&gt;
+        &lt;title&gt;Phone&lt;/title&gt;
       &lt;/field&gt;
     &lt;/schema&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
+ <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
  <alias from="edit" to="@@edit"/>
  <alias from="sharing" to="@@sharing"/>

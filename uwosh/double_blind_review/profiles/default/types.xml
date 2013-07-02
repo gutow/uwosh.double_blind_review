@@ -2,8 +2,6 @@
 <object name="portal_types" meta_type="Plone Types Tool">
  <property
     name="title">Controls the available content types in your portal</property>
- <object name="review_type1" meta_type="Dexterity FTI"/>
- <object name="review_type2" meta_type="Dexterity FTI"/>
  <object name="mock_proposal" meta_type="Dexterity FTI"/>
  <object name="proposer" meta_type="Dexterity FTI"/>
  <object name="mentor" meta_type="Dexterity FTI"/>
@@ -13,5 +11,13 @@
  <object name="folder_visible_only_to_administrators"
     meta_type="Dexterity FTI"/>
  <object name="double_blind_review_product_overview"
+    meta_type="Dexterity FTI"/>
+ <object name="drop_box_old_folder_style"
+    meta_type="Factory-based Type Information with dynamic views"/>
+ <object name="making_a_review_content_type" meta_type="Dexterity FTI"/>
+ <object name="making_an_id_containing_content_type"
+    meta_type="Dexterity FTI"/>
+ <object name="making_a_proposal_content_type" meta_type="Dexterity FTI"/>
+ <object name="making_a_proposal_drop_box_content_type"
     meta_type="Dexterity FTI"/>
 </object>

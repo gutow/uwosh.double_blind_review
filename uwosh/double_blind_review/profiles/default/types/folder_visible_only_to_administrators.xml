@@ -31,8 +31,8 @@
  <property name="schema"></property>
  <property
     name="model_source">&lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
-      &lt;schema&gt;
-      &lt;/schema&gt;
+  &lt;schema&gt;
+  &lt;/schema&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>

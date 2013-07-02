@@ -21,7 +21,8 @@
   <element value="view"/>
  </property>
  <property name="default_view_fallback">False</property>
- <property name="add_permission">plone.app.controlpanel.UsersAndGroups</property>
+ <property
+    name="add_permission">plone.app.controlpanel.UsersAndGroups</property>
  <property name="klass">plone.dexterity.content.Container</property>
  <property name="behaviors">
   <element value="plone.app.content.interfaces.INameFromTitle"/>
@@ -29,24 +30,28 @@
  </property>
  <property name="schema"></property>
  <property
-    name="model_source">&lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+    name="model_source">&lt;model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
     &lt;schema&gt;
+      &lt;field name="submission_deadline" type="zope.schema.Datetime"&gt;
+        &lt;default&gt;2013-01-01 00:00:00&lt;/default&gt;
+        &lt;description&gt;Deadline by which proposals should be submitted.&lt;/description&gt;
+        &lt;title&gt;Submission Deadline&lt;/title&gt;
+      &lt;/field&gt;
       &lt;field name="instructions" type="plone.app.textfield.RichText"&gt;
-        &lt;default&gt;&amp;lt;p&amp;gt;&amp;lt;b&amp;gt;SUBMISSION WINDOW CLOSES &amp;lt;span style=&amp;quot;color: rgb(255, 0, 0); &amp;quot;&amp;gt;&amp;amp;lt;INSERT DATE and TIME&amp;amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;/p&amp;gt;
-  &amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Creating a New Proposal&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;
-  &amp;lt;ol&amp;gt;
-  &amp;lt;li&amp;gt;Make sure you want to create a &amp;lt;span style=&amp;quot;color: rgb(255, 0, 0); &amp;quot;&amp;gt;&amp;amp;lt;INSERT PROPOSAL TYPE&amp;amp;gt;&amp;lt;/span&amp;gt;. &amp;#160;If not look at the links near the top of the site to find the appropriate place to submit the type of proposal you wish. &amp;#160;If you do not see the appropriate type, you are not visiting the proper web site.&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;From the &amp;quot;Add New...&amp;quot; menu above select the type of proposal you wish to prepare. &amp;#160;More detailed instructions available &amp;lt;span style=&amp;quot;color: rgb(255, 0, 0); &amp;quot;&amp;gt;&amp;amp;lt;INSERT LINK&amp;amp;gt;&amp;lt;/span&amp;gt;.&amp;lt;/li&amp;gt;
-  &amp;lt;/ol&amp;gt;
-  &amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Editing or Viewing an Existing Proposal&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;
-  &amp;lt;ol&amp;gt;
-  &amp;lt;li&amp;gt;Proposals that are being reviewed will be invisible to their creators in order to maintain confidentiality of the process.&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Click on the link to the existing proposal below to access it.&amp;lt;/li&amp;gt;
-  &amp;lt;/ol&amp;gt;
-  &amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Reviewing a Proposal&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;
-  &amp;lt;ol&amp;gt;
-  &amp;lt;li&amp;gt;Links to proposals you are assigned to review are below.&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Click on each link to access the proposals. &amp;#160;Detailed instructions for reviewers are &amp;lt;span style=&amp;quot;color: rgb(255, 0, 0); &amp;quot;&amp;gt;&amp;amp;lt;INSERT LINK&amp;amp;gt;&amp;lt;/span&amp;gt;.&amp;lt;/li&amp;gt;
+        &lt;default&gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Creating a New Proposal&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&amp;#13;
+  &amp;lt;ol&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Make sure you want to create a &amp;lt;span&amp;gt;&amp;amp;lt;INSERT PROPOSAL TYPE&amp;amp;gt;&amp;lt;/span&amp;gt;. &amp;#160;If not look at the links near the top of the site to find the appropriate place to submit the type of proposal you wish. &amp;#160;If you do not see the appropriate type, you are not visiting the proper web site.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;From the "Add New..." menu above select the type of proposal you wish to prepare. &amp;#160;More detailed instructions available &amp;lt;span&amp;gt;&amp;amp;lt;INSERT LINK&amp;amp;gt;&amp;lt;/span&amp;gt;.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;/ol&amp;gt;&amp;#13;
+  &amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Editing or Viewing an Existing Proposal&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&amp;#13;
+  &amp;lt;ol&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Proposals that are being reviewed will be invisible to their creators in order to maintain confidentiality of the process.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Click on the link to the existing proposal below to access it.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;/ol&amp;gt;&amp;#13;
+  &amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Reviewing a Proposal&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&amp;#13;
+  &amp;lt;ol&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Links to proposals you are assigned to review are below.&amp;lt;/li&amp;gt;&amp;#13;
+  &amp;lt;li&amp;gt;Click on each link to access the proposals. &amp;#160;Detailed instructions for reviewers are &amp;lt;span&amp;gt;&amp;amp;lt;INSERT LINK&amp;amp;gt;&amp;lt;/span&amp;gt;.&amp;lt;/li&amp;gt;&amp;#13;
   &amp;lt;/ol&amp;gt;&lt;/default&gt;
         &lt;description&gt;Edit to be appropriate for your situation.&lt;/description&gt;
         &lt;title&gt;Instructions&lt;/title&gt;
@@ -54,6 +59,7 @@
     &lt;/schema&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
+ <property name="schema_policy">dexterity</property>
  <alias from="(Default)" to="(dynamic view)"/>
  <alias from="edit" to="@@edit"/>
  <alias from="sharing" to="@@sharing"/>
